@@ -1,31 +1,36 @@
 package remarema.core;
 
-public class Client {
-	private int file;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
-	public void client() {
-		new Server();
+public class Client {
+
+	private Server server;
+
+	public Client(Server server) {
+		this.server = server;
 	}
 
 	public void retrieve(String filename) {
-		newOutputStream(file);
-		close(file);
+		OutputStream destination = newOutputStream(filename);
+		server.Fileausgabe(filename, destination);
 
 	}
 
-	private void newOutputStream(int file2) {
-		// TODO Auto-generated method stub
+	private OutputStream newOutputStream(String filename) {
 
+		File hotzenplotz = new File(filename);
+
+		FileOutputStream igenwie = null;
+		try {
+			igenwie = new FileOutputStream(hotzenplotz);
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return igenwie;
 	}
-
-	private void close(int file) {
-		// TODO Auto-generated method stub
-
-	}
-
-	// public void write(int Fileanzahl ) {
-	// }
-	// int newFileOuputsteam(int file)
-	// {
 
 }
