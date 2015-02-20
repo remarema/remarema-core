@@ -1,7 +1,5 @@
 package remarema.core;
 
-public class Test 
-{
- 
+public class Servertest {
 
 }
