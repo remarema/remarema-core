@@ -1,42 +1,39 @@
 package remarema.core;
+
 /**
  * Diese Klasse enthält alle Infos die wichtig sind von Dateien
+ * 
  * @author Regina
  *
  */
 
 public class FileInfo {
-	public String name;
-	public int date;
+	private String name;
+	private long lastModified;
 	private boolean directory;
-	/**
-	 * Diese Methode gibt einen Namen aus
-	 * @return das Feld name von Typ String
-	 */
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
-	/**
-	 * Bei dieser Methode wird das Datum ausgeben
-	 * @return Datum vom Typ int
-	 */
-	public int getDate(){
-		return date;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	/**
-	 * Ist die Ausgabe ein Verzeichnis oder eine Datei
-	 * Handelt es sich um ein Verzeichnis ist directory richtig
-	 */
-	public void isDirectory(){
-		if(directory== true){
-			System.out.println("Das ist eine Verzeichnis");
-			
-		}
-		else{
-			System.out.println("Das ist eine Datei");
-			
-		}
+
+	public long getLastModified() {
+		return lastModified;
 	}
-	
+
+	public void setLastModified(long lastModified) {
+		this.lastModified = lastModified;
+	}
+
+	public boolean isDirectory() {
+		return directory;
+	}
+
+	public void setDirectory(boolean directory) {
+		this.directory = directory;
+	}
 
 }
