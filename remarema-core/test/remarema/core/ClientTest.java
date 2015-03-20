@@ -5,7 +5,11 @@ import java.io.OutputStream;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
+/**
+ * Die Klasse testet.
+ * @author Regina
+ *
+ */
 public class ClientTest {
 	private Server server;
 	private String workdir;

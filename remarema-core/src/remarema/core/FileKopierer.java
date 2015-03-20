@@ -81,13 +81,19 @@ public class FileKopierer {
             }            
         }
     }
+    /**
+     * die Methode  writeToFile schreibt ein neues File.
+     * 
+     * @param file ist der Pfad der Datei in die geschrieben wird
+     * @param newContent enthält die Daten die in die Datei geschrieben werden
+     */
     private void writeToFile(File file, String newContent) {
 
         FileWriter w;
         try {
-            w = new FileWriter(file);
-            w.write(newContent);
-            w.close();
+            w = new FileWriter(file);// neue Instanz der Klasse FileWriter mit der in die Datei 'file' geschrieben wird 
+            w.write(newContent); // schreiben der Daten von newContent
+            w.close(); // Daten mit Dateisystem synchronisieren und Datei schliessen (freigeben).
         } catch (IOException ex) {
             System.err.println("Write Details Error"+ ex);
         }
