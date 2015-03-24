@@ -12,14 +12,9 @@ import java.util.List;
  *
  */
 public class Server {
-	/*
-	 * public void Fileausgabe( String Filename, OutputStream destination ) {
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
+	
+	  public void Fileausgabe( String Filename, OutputStream destination ) {
+	  }
 	/**
 	 * Gibt die Liste der Vorhandenen Dateien eines Verzeichnis mit Hilfe von FileInfo zurück
 	 * 
@@ -27,8 +22,8 @@ public class Server {
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
 	 * @return es wird fileList zurückgegeben
 	 */
-	public List<FileInfo> listFiles(String directory) {
-		List<FileInfo> fileList = new ArrayList<FileInfo>();
+	public List<FileInfo> listFilesServer(String directory) {
+		List<FileInfo> fileListServer = new ArrayList<FileInfo>();
 		File source =new File(directory);
 	File[]sourceFiles=source.listFiles();
 	for(File file:sourceFiles){
@@ -37,12 +32,13 @@ public class Server {
 		info.setName(file.getName());
 		info.setLastModified(file.lastModified());
 		info.setDirectory(file.isDirectory());
-		fileList.add(info);
+		fileListServer.add(info);
 		
 	}
 		
 		
-		return fileList;
+		return fileListServer;
+		
 
 	}
 

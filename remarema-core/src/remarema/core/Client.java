@@ -14,7 +14,11 @@ import java.util.List;
 public class Client {
 
 	private Server server;
+	private List<FileInfo> fileListClient;
 
+	public Client (){
+		
+	}
 	public Client(Server server) {
 		this.server = server;
 	}
@@ -41,8 +45,8 @@ public class Client {
 		}
 		return igenwie;
 	}
-	public List<FileInfo> listFiles(String directory) {
-		List<FileInfo> fileListClient = new ArrayList<FileInfo>();
+	public List<FileInfo> listFilesClient(String directory) {
+		fileListClient = new ArrayList<FileInfo>();
 		File source =new File(directory);
 	File[]sourceFiles=source.listFiles();
 	for(File file:sourceFiles){
@@ -54,19 +58,31 @@ public class Client {
 		fileListClient.add(info);
 		
 	}
-		
-		
 		return fileListClient;
+	
+	}
+	
+	public String OuputList(List<FileInfo> fileListClient){
+		String fileAusgabe = "";
+		this.fileListClient=fileListClient;
+		for(int i=0;i<fileListClient.size();i++){
+				fileAusgabe=fileListClient.toString();
+		}
+	 return fileAusgabe;
 		
-
 	}
 	public File existFile(String name){
+		return null;
 		
 	}
 	public File currentFile(String name ,long lastModified){
+		return null;
 		
 	}
 	public File oldFile(String name,long lastModified){
+		return null;
+		
+	}
 	
 
 }
