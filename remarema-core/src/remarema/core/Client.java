@@ -56,11 +56,14 @@ public class Client {
 		info.setLastModified(file.lastModified());
 		info.setDirectory(file.isDirectory());
 		fileListClient.add(info);
+		File vorhanden=new File (directory);
+		boolean fileVorhanden=vorhanden.exists();
 		
 	}
 		return fileListClient;
 	
 	}
+	
 	
 	public String OuputList(List<FileInfo> fileListClient){
 		String fileAusgabe = "";
