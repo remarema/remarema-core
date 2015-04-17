@@ -1,5 +1,7 @@
 package remarema.core;
 
+import static org.junit.Assert.*;
+
 import java.io.OutputStream;
 import java.util.List;
 
@@ -39,11 +41,17 @@ public class ClientTest {
 	@Test
 	public void fileListClient() {
 		Client client = new Client();
-		String directory = "C:\\Users\\Regina\\Documents\\Test_Diplom";
-		client.listFilesClient(directory);
+		String directory="./test/resources";
+		List<FileInfo>list=client.listFilesClient(directory);
+		assertFalse(list.isEmpty());
+		System.out.println(list.get(0).getName());
+		long lastModified=list.get(0).getLastModified();
+		
+		
 		
 
 	}
+
 	
 
 	
