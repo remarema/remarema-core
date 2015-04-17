@@ -48,27 +48,7 @@ public class Client {
 		return igenwie;
 	}
 
-	public List<FileInfo> listFilesClient(String directory) {
-		fileListClient = new ArrayList<FileInfo>();
-		File source = new File(directory);
-		boolean fileVorhanden = source.exists();
-		if (!fileVorhanden) {
-			throw new IllegalArgumentException("Verzeichnis nicht Vorhanden:"+directory);
-		}
-
-		File[] sourceFiles = source.listFiles();
-		for (File file : sourceFiles) {
-
-			FileInfo info = new FileInfo();
-			info.setName(file.getName());
-			info.setLastModified(file.lastModified());
-			info.setDirectory(file.isDirectory());
-			fileListClient.add(info);
-
-		}
-		return fileListClient;
-
-	}
+	
 
 	public String OuputList(List<FileInfo> fileListClient) {
 		String fileAusgabe = "";
@@ -79,11 +59,13 @@ public class Client {
 		return fileAusgabe;
 
 	}
+	/**
+	 * existiert das File das ich von Server erhalten habe an CLient ebenfall
+	 * @param name
+	 * @return
+	 */
 
-	public File existFile(String name) {
-		return null;
-
-	}
+	
 
 	public File currentFile(String name, long lastModified) {
 		return null;

@@ -22,24 +22,12 @@ public class Server {
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
 	 * @return es wird fileList zurückgegeben
 	 */
-	public List<FileInfo> listFilesServer(String directory) {
-		List<FileInfo> fileListServer = new ArrayList<FileInfo>();
-		File source =new File(directory);
-	File[]sourceFiles=source.listFiles();
-	for(File file:sourceFiles){
-		
-		FileInfo info =new FileInfo();
-		info.setName(file.getName());
-		info.setLastModified(file.lastModified());
-		info.setDirectory(file.isDirectory());
-		fileListServer.add(info);
-		
-	}
+
 		
 		
-		return fileListServer;
+		
 		
 
-	}
+	
 
 }
