@@ -14,14 +14,10 @@ import java.util.List;
 public class Server {
 	
 	  public void Fileausgabe( String Filename, OutputStream destination ) {
+		  // suche die Datei mit Filename im Repository
+		  // und schreibe den Inhalt in den OutputStream destination
 	  }
-	/**
-	 * Gibt die Liste der Vorhandenen Dateien eines Verzeichnis mit Hilfe von FileInfo zurück
-	 * 
-	 * @param directory
-	 *            gibt an aus welchen Verzeichnis die Dateien sind.
-	 * @return es wird fileList zurückgegeben
-	 */
+	
 
 		
 		

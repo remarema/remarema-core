@@ -3,6 +3,7 @@ package remarema.core;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +30,13 @@ public class Client {
 	 * 
 	 * @param filename
 	 */
-	public void retrieve(String filename) {
+	public void retrieve(String filename) throws IOException {
 		OutputStream destination = newOutputStream(filename);
-		server.Fileausgabe(filename, destination);
+		try {
+			server.Fileausgabe(filename, destination);
+		} finally {
+			destination.close();
+		}
 
 	}
 
@@ -48,8 +53,6 @@ public class Client {
 		return igenwie;
 	}
 
-	
-
 	public String OuputList(List<FileInfo> fileListClient) {
 		String fileAusgabe = "";
 		this.fileListClient = fileListClient;
@@ -59,13 +62,11 @@ public class Client {
 		return fileAusgabe;
 
 	}
-	/**
-	 * existiert das File das ich von Server erhalten habe an CLient ebenfall
-	 * @param name
-	 * @return
-	 */
 
-	
+	public List Serverrequest() {
+		return fileListClient;
+
+	}
 
 	public File currentFile(String name, long lastModified) {
 		return null;

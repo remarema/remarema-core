@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 public class ClientTest {
 	private Server server;
 	private String workdir;
-	private List<FileInfo> fileListClient;
+	private List<FileInfo> fileList;
 
 	@Before
 	public void setup() {
@@ -39,10 +39,10 @@ public class ClientTest {
 	
 
 	@Test
-	public void fileListClient() {
-		Client client = new Client();
+	public void fileList() {
+		FileRepository re = new FileRepository();
 		String directory="./test/resources";
-		List<FileInfo>list=client.listFilesClient(directory);
+		List<FileInfo>list=re.listFiles(directory);
 		assertFalse(list.isEmpty());
 		System.out.println(list.get(0).getName());
 		long lastModified=list.get(0).getLastModified();
