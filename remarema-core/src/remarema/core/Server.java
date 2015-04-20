@@ -11,19 +11,27 @@ import java.util.List;
  * @author Regina
  *
  */
+
 public class Server {
-	
-	  public void Fileausgabe( String Filename, OutputStream destination ) {
-		  // suche die Datei mit Filename im Repository
-		  // und schreibe den Inhalt in den OutputStream destination
-	  }
-	
 
-		
-		
-		
-		
+	private boolean fileIdent;
 
-	
+	public void Fileausgabe(String Filename, OutputStream destination) {
+		FileRepository filerepository = new FileRepository();
+		String directory = "./test/resources";
+		List<FileInfo> fileLists = filerepository.listFiles(directory);
+
+		for(FileInfo result : fileLists){
+			fileIdent = false;
+			if(result.getName().equals(Filename)){
+				fileIdent = true;
+			}
+		}
+		System.out.println(fileIdent);
+		
+		
+		// suche die Datei mit Filename im Repository
+		// und schreibe den Inhalt in den OutputStream destination
+	}
 
 }
