@@ -2,6 +2,7 @@ package remarema.core;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ClientTest {
 	}
 
 	@Test
-	public void downloadOneFile() {
+	public void downloadOneFile() throws IOException {
 		Client client = new Client(server);
 		client.retrieve("Hallo World");
 		Mockito.verify(server).Fileausgabe(Mockito.anyString(),

@@ -16,7 +16,7 @@ public class Server {
 
 	private boolean fileIdent;
 
-	public void Fileausgabe(String Filename, OutputStream destination) {
+	public FileInfo Fileausgabe(String Filename, OutputStream destination) {
 		FileRepository filerepository = new FileRepository();
 		String directory = "./test/resources";
 		List<FileInfo> fileLists = filerepository.listFiles(directory);
@@ -25,9 +25,13 @@ public class Server {
 			fileIdent = false;
 			if(result.getName().equals(Filename)){
 				fileIdent = true;
+				System.out.println(fileIdent);
+				return result;
+				
 			}
 		}
 		System.out.println(fileIdent);
+		return null;
 		
 		
 		// suche die Datei mit Filename im Repository
