@@ -9,65 +9,76 @@ public class FileRepository {
 	public FileRepository() {
 
 	}
-	/** Gibt die Liste der Vorhandenen Dateien eines Verzeichnis mit Hilfe von FileInfo zurück
+
+	/**
+	 * Gibt die Liste der Vorhandenen Dateien eines Verzeichnis mit Hilfe von
+	 * FileInfo zurÃ¼ck
 	 * 
 	 * @param directory
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
-	 * @return es wird fileList zurückgegeben
+	 * @return es wird fileList zurÃ¼ckgegeben
 	 */
 
 	public List<FileInfo> listFiles(String directory) {
-		List<FileInfo> fileList = new ArrayList<FileInfo>();
 		File source = new File(directory);
 		File[] sourceFiles = source.listFiles();
+
+		List<FileInfo> fileList = new ArrayList<FileInfo>();
 		for (File file : sourceFiles) {
-
-			FileInfo info = new FileInfo();
-			info.setName(file.getName());
-			info.setLastModified(file.lastModified());
-			info.setDirectory(file.isDirectory());
-			fileList.add(info);
-
+			fileList.add(createFileInfoFromFile(file));
 		}
 		return fileList;
 	}
-
 	/**
-	 * ermittle dateien, die noch nicht in der übergebenen Liste other vorhanden
-	 * sind.
-	 * die  nicht vorhandene Dateien in result speichern
-	 * 
-	 * @param directory
-	 * @param other
-	 * @return result
+	 * es werden Infos zu einen File erzeugt
+	 * @param file
+	 * @return die erzeugten Infos
 	 */
-	public List<FileInfo> getNewFiles(String directory, List<FileInfo> other) {
-		List<FileInfo> result = new ArrayList<FileInfo>();
 
-		List<FileInfo> listFiles = listFiles(directory);
-
-		for (FileInfo current : listFiles) {
-			boolean fileExists = false;
-			for (FileInfo e : other) {
-				if (current.getName().equals(e.getName())) {
-					fileExists = true;
-				}
-			}
-			if (fileExists) {
-
-			}
-			
-			else {
-				result.add(current);
-
-			}
-
-		}
-		return result;
+	private FileInfo createFileInfoFromFile(File file) {
+		FileInfo info = new FileInfo();
+		info.setName(file.getName());
+		info.setLastModified(file.lastModified());
+		info.setDirectory(file.isDirectory());
+		return info;
 	}
 
 	/**
-	 * ermittle dateien, die nicht im Repository sind
+	 * gib neue Files aus und Ã¼berprÃ¼ft sie
+	 * @param directory
+	 * @param other
+	 * @return die vermissten Dateien
+	 */
+	public List<FileInfo> getNewFiles(String directory, List<FileInfo> other) {
+		List<FileInfo> missingFiles = new ArrayList<FileInfo>();
+		List<FileInfo> currentFiles = listFiles(directory);
+
+		for (FileInfo current : currentFiles) {
+			if (isFileNotInList(current, other)) {
+				missingFiles.add(current);
+			}
+		}
+		
+		return missingFiles;
+	}
+	/**
+	 * es wird nach Datei gesucht die nicht in der Liste sind
+	 * @param current
+	 * @param other
+	 * @return wenn die Datei nicht inListe ist die abfrage richtig
+	 */
+
+	private boolean isFileNotInList(FileInfo current, List<FileInfo> other) {
+		for (FileInfo e : other) {
+			if (current.getName().equals(e.getName())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * ermittle dateien, die nicht in der Ablage sind
 	 * 
 	 * @param directory
 	 * @param other
@@ -77,17 +88,11 @@ public class FileRepository {
 		List<FileInfo> result = new ArrayList<FileInfo>();
 		List<FileInfo> listFiles = listFiles(directory);
 		for (FileInfo current : listFiles) {
-			boolean fileDoMuch = false;
 			for (FileInfo e : other) {
 				if (current.getName().equals(e.getName())) {
-					fileDoMuch = true;
+					result.add(current);
 				}
 			}
-			if (fileDoMuch) {
-
-				result.add(current);
-			}
-
 		}
 		return result;
 	}

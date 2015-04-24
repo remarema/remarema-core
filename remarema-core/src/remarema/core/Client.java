@@ -15,34 +15,29 @@ import java.util.List;
  */
 public class Client {
 
-	private Server server;
 	private List<FileInfo> fileListClient;
+	private String filename;
+	private File hotzenplotz;
+	private Server server;
 
-	public Client() {
-
-	}
+	/**
+	 * Im Konstruktor erzeugen wir einen Server
+	 * 
+	 * @param server
+	 */
 
 	public Client(Server server) {
 		this.server = server;
+		this.hotzenplotz = new File(filename);
 	}
 
 	/**
-	 * 
+	 * Es wird ein neuer Ausgabestrom erzeugt
 	 * @param filename
+	 * @return igenwie
 	 */
-	public void retrieve(String filename) throws IOException {
-		OutputStream destination = newOutputStream(filename);
-		try {
-			server.Fileausgabe(filename, destination);
-		} finally {
-			destination.close();
-		}
-
-	}
 
 	private OutputStream newOutputStream(String filename) {
-
-		File hotzenplotz = new File(filename);
 
 		FileOutputStream igenwie = null;
 		try {
@@ -52,7 +47,11 @@ public class Client {
 		}
 		return igenwie;
 	}
-
+/**
+ * gibt  eine Ausgabeliste von Files zurück
+ * @param fileListClient
+ * @return fileAusgabe
+ */
 	public String OuputList(List<FileInfo> fileListClient) {
 		String fileAusgabe = "";
 		this.fileListClient = fileListClient;
@@ -63,18 +62,25 @@ public class Client {
 
 	}
 
+	/**
+	 * Abrufen von Filenamen und dessen Verzeichnis
+	 * @param filename
+	 */
+	public void retrieve(String filename) throws IOException {
+		OutputStream destination = newOutputStream(filename);
+		try {
+			server.retrieveFile(filename, destination);
+		} finally {
+			destination.close();
+		}
+
+	}
+/**
+ * Der Client schickt eine Anfrage an den Server
+ * @return fileListe
+ */
 	public List Serverrequest() {
 		return fileListClient;
-
-	}
-
-	public File currentFile(String name, long lastModified) {
-		return null;
-
-	}
-
-	public File oldFile(String name, long lastModified) {
-		return null;
 
 	}
 

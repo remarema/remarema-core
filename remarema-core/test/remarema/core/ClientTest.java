@@ -32,7 +32,7 @@ public class ClientTest {
 	public void downloadOneFile() throws IOException {
 		Client client = new Client(server);
 		client.retrieve("Hallo World");
-		Mockito.verify(server).Fileausgabe(Mockito.anyString(),
+		Mockito.verify(server).retrieveFile(Mockito.anyString(),
 				Mockito.any(OutputStream.class));
 
 	}

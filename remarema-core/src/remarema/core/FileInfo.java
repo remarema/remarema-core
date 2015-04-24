@@ -1,7 +1,8 @@
 package remarema.core;
 
 /**
- * Diese Klasse enth�lt alle Infos die wichtig sind von Dateien
+ * Diese Klasse enthält alle Infos die wichtig sind von Dateien
+ * die Methoden können in anderen Klassen verwendet werden
  * 
  * @author Regina
  *
