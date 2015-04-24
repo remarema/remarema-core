@@ -17,7 +17,7 @@ public class Client {
 
 	private List<FileInfo> fileListClient;
 	private String filename;
-	private File hotzenplotz;
+	
 	private Server server;
 
 	/**
@@ -28,7 +28,7 @@ public class Client {
 
 	public Client(Server server) {
 		this.server = server;
-		this.hotzenplotz = new File(filename);
+		
 	}
 
 	/**
@@ -41,6 +41,7 @@ public class Client {
 
 		FileOutputStream igenwie = null;
 		try {
+			File hotzenplotz = new File(filename);
 			igenwie = new FileOutputStream(hotzenplotz);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
