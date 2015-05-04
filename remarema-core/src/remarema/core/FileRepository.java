@@ -1,6 +1,7 @@
 package remarema.core;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,10 @@ public class FileRepository {
 		}
 		return fileList;
 	}
+
 	/**
 	 * es werden Infos zu einen File erzeugt
+	 * 
 	 * @param file
 	 * @return die erzeugten Infos
 	 */
@@ -45,6 +48,7 @@ public class FileRepository {
 
 	/**
 	 * gib neue Files aus und überprüft sie
+	 * 
 	 * @param directory
 	 * @param other
 	 * @return die vermissten Dateien
@@ -58,11 +62,13 @@ public class FileRepository {
 				missingFiles.add(current);
 			}
 		}
-		
+
 		return missingFiles;
 	}
+
 	/**
 	 * es wird nach Datei gesucht die nicht in der Liste sind
+	 * 
 	 * @param current
 	 * @param other
 	 * @return wenn die Datei nicht inListe ist die abfrage richtig
@@ -78,7 +84,8 @@ public class FileRepository {
 	}
 
 	/**
-	 * ermittle dateien, die nicht in der Ablage sind
+	 * Diese Methode gibt eine Liste aller Files zurück,die am Server und CLient
+	 * übereinstimmen
 	 * 
 	 * @param directory
 	 * @param other
@@ -97,8 +104,14 @@ public class FileRepository {
 		return result;
 	}
 
-	
-		
+	/**
+	 * Diese Methode soll "missingFiles" vom Server zum Client kopieren.
+	 * @param missingFiles
+	 * @param directoryClient
+	 */
+	public void copyFiles(List<FileInfo> missingFiles, String directoryClient) {
+		List<FileInfo> missing = new ArrayList<FileInfo>();
+
 	}
 
-
+}

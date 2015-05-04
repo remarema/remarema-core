@@ -52,7 +52,7 @@ public class Server {
 		}
 	}
 /**
- * Alle Dateien von der Eingabedatei werden in den Ausgabefilestrom kopiert
+ * Alle Dateien von der Eingabedatei werden in den Ausgabedateistrom kopiert
  * @param inputFile
  * @param destination
  * @throws FileNotFoundException

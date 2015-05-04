@@ -4,16 +4,14 @@ import java.io.File;
 import java.util.List;
 
 public class Main {
-	FileRepository re=new FileRepository();
-	private String directory;
-public File sycronFile(String directory1, List<FileInfo> other){
-re.listFiles(directory);
-re.getMissingFiles(directory1, other);
-re.getNewFiles(directory1, other);
+	FileRepository re = new FileRepository();
+	
 
-	return null;
-	
-}
-	
+	public void syncronFile(String directoryClient, String directoryServer) {
+		List<FileInfo> listeClient = re.listFiles(directoryClient);		
+		List<FileInfo> missingFiles = re.getNewFiles(directoryServer,listeClient);
+		
+		re.copyFiles(missingFiles, directoryClient);
+	}
 
 }
