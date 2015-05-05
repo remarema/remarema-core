@@ -1,14 +1,69 @@
 package remarema.core;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FileRepository {
 
-	public FileRepository() {
+	private File rootDirectory;
 
+	public FileRepository(File rootDirectory) {
+		this.rootDirectory = rootDirectory;
+	}
+
+	/**
+	 * Es werden Infos zu einen File erzeugt
+	 * 
+	 * @param file
+	 * @return die erzeugten Infos
+	 */
+	private FileInfo createFileInfoFromFile(File file) {
+		FileInfo info = new FileInfo();
+		info.setName(createRelativeFileName(file));
+		info.setLastModified(file.lastModified());
+		info.setDirectory(file.isDirectory());
+		return info;
+	}
+
+	private String createRelativeFileName(File file) {
+		String rootURI = rootDirectory.toURI().toString();
+		String fileURI = file.toURI().toString();
+		String name = fileURI.substring(rootURI.length());
+		return name;
+	}
+
+	public File getFile(String path) {
+		File file = makeFileFromPath(path);
+		if (file.isFile()) {
+			return file;
+		}
+		String msg = "path not a valid file:" + path;
+		throw new IllegalArgumentException(msg);
+	}
+
+	public File getRootDirectory() {
+		return rootDirectory;
+	}
+
+	/**
+	 * Erzeugt aus dem relativen Pfad ein {@link File} Objekt, welches auf ein
+	 * Verzeichnis innerhalb des Repositories zeigt.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             Wird geworfen, wenn der Pfad kein Verzeichnis innerhalb des
+	 *             Repositories ist.
+	 * @param path
+	 *            Ein relativer Pfad innerhalb des Repositories
+	 * @return Ein File Objekt, welches den absoluten Pfad des Verzeichnisses
+	 *         darstellt.
+	 */
+	public File getSubdirectory(String path) {
+		File subdirectory = makeFileFromPath(path);
+		if (subdirectory.isDirectory()) {
+			return subdirectory;
+		}
+		String msg = "path not a valid directory:" + path;
+		throw new IllegalArgumentException(msg);
 	}
 
 	/**
@@ -19,11 +74,9 @@ public class FileRepository {
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
 	 * @return es wird fileList zurückgegeben
 	 */
-
 	public List<FileInfo> listFiles(String directory) {
-		File source = new File(directory);
-		File[] sourceFiles = source.listFiles();
-
+		File subdirectory = getSubdirectory(directory);
+		File[] sourceFiles = subdirectory.listFiles();
 		List<FileInfo> fileList = new ArrayList<FileInfo>();
 		for (File file : sourceFiles) {
 			fileList.add(createFileInfoFromFile(file));
@@ -31,87 +84,8 @@ public class FileRepository {
 		return fileList;
 	}
 
-	/**
-	 * es werden Infos zu einen File erzeugt
-	 * 
-	 * @param file
-	 * @return die erzeugten Infos
-	 */
-
-	private FileInfo createFileInfoFromFile(File file) {
-		FileInfo info = new FileInfo();
-		info.setName(file.getName());
-		info.setLastModified(file.lastModified());
-		info.setDirectory(file.isDirectory());
-		return info;
-	}
-
-	/**
-	 * gib neue Files aus und überprüft sie
-	 * 
-	 * @param directory
-	 * @param other
-	 * @return die vermissten Dateien
-	 */
-	public List<FileInfo> getNewFiles(String directory, List<FileInfo> other) {
-		List<FileInfo> missingFiles = new ArrayList<FileInfo>();
-		List<FileInfo> currentFiles = listFiles(directory);
-
-		for (FileInfo current : currentFiles) {
-			if (isFileNotInList(current, other)) {
-				missingFiles.add(current);
-			}
-		}
-
-		return missingFiles;
-	}
-
-	/**
-	 * es wird nach Datei gesucht die nicht in der Liste sind
-	 * 
-	 * @param current
-	 * @param other
-	 * @return wenn die Datei nicht inListe ist die abfrage richtig
-	 */
-
-	private boolean isFileNotInList(FileInfo current, List<FileInfo> other) {
-		for (FileInfo e : other) {
-			if (current.getName().equals(e.getName())) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
-	 * Diese Methode gibt eine Liste aller Files zurück,die am Server und CLient
-	 * übereinstimmen
-	 * 
-	 * @param directory
-	 * @param other
-	 * @return result
-	 */
-	public List<FileInfo> getMissingFiles(String directory, List<FileInfo> other) {
-		List<FileInfo> result = new ArrayList<FileInfo>();
-		List<FileInfo> listFiles = listFiles(directory);
-		for (FileInfo current : listFiles) {
-			for (FileInfo e : other) {
-				if (current.getName().equals(e.getName())) {
-					result.add(current);
-				}
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Diese Methode soll "missingFiles" vom Server zum Client kopieren.
-	 * @param missingFiles
-	 * @param directoryClient
-	 */
-	public void copyFiles(List<FileInfo> missingFiles, String directoryClient) {
-		List<FileInfo> missing = new ArrayList<FileInfo>();
-
+	public File makeFileFromPath(String path) {
+		return new File(rootDirectory, path);
 	}
 
 }

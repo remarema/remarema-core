@@ -1,11 +1,6 @@
 package remarema.core;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -15,74 +10,115 @@ import java.util.List;
  */
 public class Client {
 
-	private List<FileInfo> fileListClient;
-	private String filename;
-	
-	private Server server;
+	private FileRepository repository;
 
-	/**
-	 * Im Konstruktor erzeugen wir einen Server
-	 * 
-	 * @param server
-	 */
-
-	public Client(Server server) {
-		this.server = server;
-		
+	public Client(FileRepository repository) {
+		this.repository = repository;
 	}
 
-	/**
-	 * Es wird ein neuer Ausgabestrom erzeugt
-	 * @param filename
-	 * @return igenwie
-	 */
+	public List<FileInfo> listFiles(String directory) {
+		return repository.listFiles(directory);
+	}
 
-	private OutputStream newOutputStream(String filename) {
+	public void remove(String path) {
+		removeFile(repository.getFile(path));
+	}
 
-		FileOutputStream igenwie = null;
+	private void removeFile(File file) {
+		if (file.isDirectory()) {
+			removeDirectory(file);
+		} else {
+			file.delete();
+		}
+	}
+
+	private void removeDirectory(File directory) {
+		File[] directoryContents = directory.listFiles();
+		for (File file : directoryContents) {
+			removeFile(file);
+		}
+		directory.delete();
+	}
+
+	public OutputStream createOutputStream(String path) {
+		File file = repository.makeFileFromPath(path);
+		if (file.exists()) {
+			String msg = "can't create output stream for file:" + path;
+			throw new RuntimeException(msg);
+		}
 		try {
-			File hotzenplotz = new File(filename);
-			igenwie = new FileOutputStream(hotzenplotz);
+			makeParentDirectory(file);
+			return new FileOutputStream(file);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			String msg = "can't create output stream for file:" + path;
+			throw new RuntimeException(msg);
 		}
-		return igenwie;
 	}
-/**
- * gibt  eine Ausgabeliste von Files zurück
- * @param fileListClient
- * @return fileAusgabe
- */
-	public String OuputList(List<FileInfo> fileListClient) {
-		String fileAusgabe = "";
-		this.fileListClient = fileListClient;
-		for (int i = 0; i < fileListClient.size(); i++) {
-			fileAusgabe = fileListClient.toString();
+
+	private void makeParentDirectory(File file) {
+		File parent = file.getParentFile();
+		if (!parent.exists()) {
+			parent.mkdirs();
 		}
-		return fileAusgabe;
+	}
+
+	public boolean isFileUpToDate(FileInfo fileInfo) {
+		File file = repository.makeFileFromPath(fileInfo.getName());
+		if (file.exists()) {
+			return true;
+		}
+		return false;
+	}
+
+	public void synchronize(Server server) {
+		synchronizeDirectory(server, ".");
+	}
+
+	public void synchronizeDirectory(Server server, String directory) {
+		List<FileInfo> serverFiles = server.listFiles(directory);
+		List<FileInfo> clientFiles = listFiles(directory);
+
+		removeObsoleteFiles(serverFiles, clientFiles);
+
+		for (FileInfo serverFile : serverFiles) {
+			if (serverFile.isDirectory()) {
+				synchronizeDirectory(server, serverFile.getName());
+			} else {
+				synchronizeFile(server, serverFile);
+			}
+		}
 
 	}
 
-	/**
-	 * Abrufen von Filenamen und dessen Verzeichnis
-	 * @param filename
-	 */
-	public void retrieve(String filename) throws IOException {
-		OutputStream destination = newOutputStream(filename);
+	private void synchronizeFile(Server server, FileInfo fileInfo) {
+		if (isFileUpToDate(fileInfo)) {
+			return;
+		}
+		String fileName = fileInfo.getName();
+		OutputStream outputStream = createOutputStream(fileName);
 		try {
-			server.retrieveFile(filename, destination);
+			server.retrieveFile(fileName, outputStream);
 		} finally {
-			destination.close();
+			close(outputStream);
 		}
-
 	}
-/**
- * Der Client schickt eine Anfrage an den Server
- * @return fileListe
- */
-	public List Serverrequest() {
-		return fileListClient;
 
+	private void close(OutputStream outputStream) {
+		try {
+			outputStream.close();
+		} catch (IOException e) {
+			String msg = "OutputStream konnte nicht geschlossen werden";
+			throw new RuntimeException(msg, e);
+		}
+	}
+
+	private void removeObsoleteFiles(List<FileInfo> serverFiles,
+			List<FileInfo> clientFiles) {
+		for (FileInfo clientFile : clientFiles) {
+			if (!clientFile.isInList(serverFiles)) {
+				remove(clientFile.getName());
+			}
+		}
 	}
 
 }

@@ -1,8 +1,10 @@
 package remarema.core;
 
+import java.util.List;
+
 /**
- * Diese Klasse enthält alle Infos die wichtig sind von Dateien
- * die Methoden können in anderen Klassen verwendet werden
+ * Diese Klasse enthält alle Infos die wichtig sind von Dateien die Methoden
+ * können in anderen Klassen verwendet werden
  * 
  * @author Regina
  *
@@ -35,6 +37,15 @@ public class FileInfo {
 
 	public void setDirectory(boolean directory) {
 		this.directory = directory;
+	}
+
+	public boolean isInList(List<FileInfo> other) {
+		for (FileInfo e : other) {
+			if (getName().equals(e.getName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

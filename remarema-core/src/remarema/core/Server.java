@@ -1,13 +1,6 @@
 package remarema.core;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -19,9 +12,7 @@ import java.util.List;
 
 public class Server {
 
-	private File directory;
-
-	private FileRepository filerepository;
+	private FileRepository repository;
 
 	/**
 	 * Verzeichnis wird im Konstruktor mitgegeben
@@ -30,42 +21,42 @@ public class Server {
 	 * @throws FileNotFoundException
 	 */
 
-	public Server(File directory) throws FileNotFoundException {
-		assertThatRootDirectoryExitst(directory);
-		this.directory = directory;
-		this.filerepository = new FileRepository();
+	public Server(FileRepository fileRepository) {
+		this.repository = fileRepository;
 	}
 
 	/**
-	 * es wird überprüft ob das Wurzelverzeichnis vorhanden ist
+	 * Diese Methode schließt den Eingabestrom sie gibt eine Fehlermeldung aus,
+	 * wenn der Strom nicht geschlossen wird
 	 * 
-	 * @param directory
-	 * @throws FileNotFoundException
+	 * @param inputStream
 	 */
 
-	private void assertThatRootDirectoryExitst(File directory)
-			throws FileNotFoundException {
-		if (!directory.exists()) {
-			throw new FileNotFoundException(
-					"Wurzelverzeichnis existiert nicht:"
-							+ directory.getAbsolutePath());
+	private void closeInputStream(InputStream inputStream) {
+		try {
+			inputStream.close();
+		} catch (IOException e) {
+			String msg = "InputStream konnte nicht geschlossen werden";
+			throw new RuntimeException(msg, e);
 		}
 	}
-/**
- * Alle Dateien von der Eingabedatei werden in den Ausgabedateistrom kopiert
- * @param inputFile
- * @param destination
- * @throws FileNotFoundException
- */
-	private void copyFileToDestination(File inputFile, OutputStream destination)
-			throws FileNotFoundException {
-		InputStream inputStream = new FileInputStream(inputFile);
-		try {
-			int rc = inputStream.read();
 
+	/**
+	 * Alle Dateien von der Eingabedatei werden in den Ausgabedateistrom kopiert
+	 * 
+	 * @param inputFile
+	 * @param destination
+	 * @throws FileNotFoundException
+	 */
+	private void copyFileToDestination(File inputFile, OutputStream destination) {
+		InputStream inputStream = createInputStream(inputFile);
+		try {
+			byte[] buffer = new byte[1024];
+
+			int rc = inputStream.read(buffer);
 			while (rc != -1) {
-				destination.write(rc);
-				rc = inputStream.read();
+				destination.write(buffer, 0, rc);
+				rc = inputStream.read(buffer);
 			}
 
 			destination.flush();
@@ -76,19 +67,18 @@ public class Server {
 			closeInputStream(inputStream);
 		}
 	}
-	/**
-	 * Diese Methode schließt den Eingabestrom 
-	 * sie gibt eine Fehlermeldung aus, wenn der Strom nicht geschlossen wird
-	 * @param inputStream
-	 */
 
-	private void closeInputStream(InputStream inputStream) {
+	private InputStream createInputStream(File file) {
 		try {
-			inputStream.close();
-		} catch (IOException e) {
-			throw new RuntimeException(
-					"InputStream konnte nicht geschlossen werden", e);
+			return new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			String msg = "can't create input stream";
+			throw new IllegalArgumentException(msg, e);
 		}
+	}
+
+	public List<FileInfo> listFiles(String path) {
+		return repository.listFiles(path);
 	}
 
 	/**
@@ -98,39 +88,10 @@ public class Server {
 	 * @param filename
 	 * @param destination
 	 * @return result
-	 * @throws FileNotFoundException
 	 */
-
-	public void retrieveFile(String filename, OutputStream destination)
-			throws FileNotFoundException {
-		List<FileInfo> fileLists = filerepository.listFiles(directory
-				.getAbsolutePath());
-
-		for (FileInfo result : fileLists) {
-			if (result.getName().equals(filename)) {
-				File inputFile = new File(directory, filename);
-				copyFileToDestination(inputFile, destination);
-				return;
-			}
-		}
-
-		throw new FileNotFoundException("Die Datei ist nicht vorhanden:"
-				+ filename);
-	}
-	/**
-	 * gibt Verzeichnis
-	 * @return Verzeichnis
-	 */
-
-	public File getDirectory() {
-		return directory;
-	}
-/**
- * setzt Verzeichnis
- * @param directory
- */
-	public void setDirectory(File directory) {
-		this.directory = directory;
+	public void retrieveFile(String filename, OutputStream destination) {
+		File sourceFile = repository.getFile(filename);
+		copyFileToDestination(sourceFile, destination);
 	}
 
 }
