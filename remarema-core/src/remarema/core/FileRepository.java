@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.*;
 
 /**
+ * In dieser Klasse wird im Konstruktor eine Wurzelverzeichnis mitgegeben, eine
+ * weitere Methode {@link #createFileInfoFromFile(File)}erzeugt einne Datei mit
+ * ihren Dateiinformationen.
  * 
  * @author Regina
  *
@@ -14,7 +17,8 @@ public class FileRepository {
 	private File rootDirectory;
 
 	/**
-	 * Bei dieser Methode wird der Dateiablage ein Root Verzeichnis mitgegeben
+	 * Bei dieser Methode wird der Dateiablage ein Wurzelverzeichnis mitgegeben
+	 * ,wenn die Dateiablage neu aufgerufen
 	 * 
 	 * @param rootDirectory
 	 *            ist ein Verzeichnis
@@ -25,24 +29,48 @@ public class FileRepository {
 	}
 
 	/**
-	 * Diese Methode erzeugt Dateiinformationen von einer Datei
+	 * Diese Methode erzeugt Dateiinformationen von einer Datei ,diese
+	 * Informationen beinhalten den Namen der Datei,den Zeitstempel an dem die
+	 * 
+	 * Datei zuletzt verändert wurde und in welchen Verzeichnis sich die Datei
+	 * befindet. {@link #createRelativeFileName(File)} bei dieser Methode wird
+	 * 
+	 * ein relativer und systemunabhängiger Pfad erzeugt. Die nächste Methode
+	 * überprüft ob es sichbei dem File um eine Datei oder um ein Verzeichnis
+	 * 
+	 * handelt. Weiter wird ein Wurzelverzeichnis in einer Methode zurück
+	 * geliefert. Die Methode {@link #getSubdirectory(String)} erzeugt eine
+	 * 
+	 * relativen Pfad ,der aus das Verzeichnis des Repositories zeugt. In dieser
+	 * Klasse gibt es auch einer Klasse die überprüft ob die Datei in der List
+	 * 
+	 * ist. Die letzt Methode erstellt eine Datei die sich im gewälten Pfad
+	 * befindet.
 	 * 
 	 * @param file
-	 *             dieser Parameter wird benötig damit klar das die erzeugte
+	 *            dieser Parameter wird benötig damit klar ist das, die erzeugte
 	 *            Datei vom Typ Datei ist.
 	 * @return die Informationen der Datei
 	 */
 	private FileInfo createFileInfoFromFile(File file) {
 		FileInfo info = new FileInfo();
 		info.setName(createRelativeFileName(file));
+
 		info.setLastModified(file.lastModified());
 		info.setDirectory(file.isDirectory());
 		return info;
 	}
 
 	/**
-	 * Diese Methode erzeut einen relativen Datei Namen 
-	 * @param die Informationen der Datei
+	 * Diese Methode erzeugt aus dem übergebenen File relativen und
+	 * systemunabhängigen Pfad.
+	 * 
+	 * Der relative Pfad wird erzeugt, indem das Wurzelverzeichniss
+	 * abgeschnitten wird. Der Pfad ist systemunabhängig, da die Pfade zuerst in
+	 * eine URI umgewandelt werden.
+	 * 
+	 * @param die
+	 *            Informationen der Datei
 	 * @return es wird der Neu erzeugte Dateiname zurückgegeben
 	 */
 
@@ -54,9 +82,15 @@ public class FileRepository {
 	}
 
 	/**
-	 * Diese Methode lieft eine Datei zurück mit den Pfad in den sie sich befindet.
-	 * @param path Pfad in den die Datei zu finden ist
-	 * @return es wird die Datei zurückgegeben
+	 * Diese Methode liefert eine Datei zurück . Die Datei befindet sich in eine
+	 * Verzeichnis von dem der Pfad mitgegeben wird . Es wird über überprüft ob
+	 * es sich bei den gefunden Objekt wirklich um eine Datei oder um ein
+	 * Verzeichnis handelt.
+	 * 
+	 * @param path
+	 *            Pfad in den die Datei zu finden ist
+	 * @return wenn das Objekt eine Datei ist wird diese zurück geben,falls es
+	 *         keine Datei ist erscheind eine Fehlermeldung
 	 */
 
 	public File getFile(String path) {
@@ -69,8 +103,9 @@ public class FileRepository {
 	}
 
 	/**
-	 * Hier wird das Root Verzeichniss geliefert.
-	 * @return das Root  Verzeichnis
+	 * Hier wird das Wurzelverzeichnis zurück geliefert.
+	 * 
+	 * @return das Root Verzeichnis
 	 */
 
 	public File getRootDirectory() {
@@ -99,12 +134,12 @@ public class FileRepository {
 	}
 
 	/**
-	 * Gibt die Liste der Vorhandenen Dateien eines Verzeichnis mit Hilfe von
-	 * FileInfo zurück.
+	 * Gibt die Liste der Vorhandenen Dateien eines reativen Verzeichnisses mit.
+	 * Dann wird überprüft,ob die Datei in der Liste vorhanden ist.
 	 * 
 	 * @param directory
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
-	 * @return es wird fileList zurückgegeben
+	 * @return es wird die Liste der Dateien zurückgegeben
 	 */
 	public List<FileInfo> listFiles(String directory) {
 		File subdirectory = getSubdirectory(directory);

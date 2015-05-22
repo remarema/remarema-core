@@ -4,10 +4,10 @@ import java.util.List;
 
 /**
  * Diese Klasse enthält Informationen über eine Datei. Die Datei bezitzt einen
- * Namen und ein Datum an den es zu letzt verändert wurde. Weiter gibt uns diese
- * Klasse Informationen ob es sich bei der Datei um eine Datei oder ein
- * Verzeichnis handelt.Schlussendlich wird acuh noch überprüft ob diese Datei in
- * einer Liste ist.
+ * Namen und einen Zeitstempel an den es zu letzt verändert wurde. Weiter gibt
+ * uns diese Klasse Informationen ob es sich bei der Datei um eine Datei oder
+ * ein Verzeichnis handelt. Mit der Methode {@link #isInList(List)} kann geprüft
+ * werden, ob ein FileINfo Objekt in einer Liste vorhanden ist.
  * 
  * @author Regina
  *
@@ -45,7 +45,7 @@ public class FileInfo {
 	}
 
 	/**
-	 * Hier legen wir fest das Datum der letzten Veränderung der Datei .
+	 * Hier legen wir fest das Zeitstempel der letzten Veränderung der Datei .
 	 * 
 	 * @param lastModified
 	 *            Datum der letzten Veränderung.
@@ -76,7 +76,7 @@ public class FileInfo {
 	}
 
 	/**
-	 * Hier wird überprüft ob die Datei in einer Liste vorhanden ist
+	 * Hier wird überprüft ob ein Objekt von Typ  Fileinfo in einer Liste vorhanden ist.
 	 * 
 	 * @param fileinfoList
 	 * 
