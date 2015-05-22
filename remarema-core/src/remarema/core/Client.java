@@ -15,7 +15,11 @@ public class Client {
 	public Client(FileRepository repository) {
 		this.repository = repository;
 	}
-
+/**
+ * Es wird
+ * @param directory
+ * @return
+ */
 	public List<FileInfo> listFiles(String directory) {
 		return repository.listFiles(directory);
 	}
