@@ -12,7 +12,7 @@ public class FileRepository {
 	}
 
 	/**
-	 * Es werden Infos zu einen File erzeugt
+	 * Es werden Infos zu den jeweiligen File passent erzeugt.
 	 * 
 	 * @param file
 	 * @return die erzeugten Infos
@@ -83,6 +83,11 @@ public class FileRepository {
 		}
 		return fileList;
 	}
+	/**
+	 * Es  wird eine File erstellt ,das sich im gewählten Path befindet
+	 * @param path ist der Ort in den die Verzeichnisse oder Dateien liegen
+	 * @return die neue  das im root Verzeichnis ist und dessen Pfad wir wissen
+	 */
 
 	public File makeFileFromPath(String path) {
 		return new File(rootDirectory, path);
