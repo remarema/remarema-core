@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.List;
 
 /**
+ * Die Klasse Client repräsentiert einen Client,der sich Dateien vom Server
+ * herunterladet.Der Client soll in einem Verzeichnis denselben Inhalt haben wie
+ * der Server an eine festgelegten Verzeichnis,
  * 
  * @author Regina
  *
@@ -11,22 +14,40 @@ import java.util.List;
 public class Client {
 
 	private FileRepository repository;
+	public Client(){
+		
+	}
 
 	public Client(FileRepository repository) {
 		this.repository = repository;
 	}
-/**
- * Es wird
- * @param directory
- * @return
- */
+
+	/**
+	 * Es wird
+	 * 
+	 * @param directory
+	 * @return
+	 */
 	public List<FileInfo> listFiles(String directory) {
 		return repository.listFiles(directory);
 	}
 
+	/**
+	 * 
+	 * @param path
+	 */
+
 	public void remove(String path) {
 		removeFile(repository.getFile(path));
 	}
+
+	/**
+	 * Diese Methode entfernt Dateien Es wird überprüft ob eine Datei in diesem
+	 * Verzeichnis ist,wenn kein Datei darin ist wird das Verzeichnis entfernt
+	 * 
+	 * @param file
+	 *            ein Ojekt von gleichnamigen Typ File
+	 */
 
 	private void removeFile(File file) {
 		if (file.isDirectory()) {
@@ -36,6 +57,14 @@ public class Client {
 		}
 	}
 
+	/**
+	 * Diese Methode entfernt Verzeichnise die leer sind. Der Unterschied zu @link
+	 * removeFile ist das hier mit einer for-each Schleife gearbeitet wird und
+	 * erst im letzten Schleifendurchlauf wird das Verzeichnis gelöscht.
+	 * 
+	 * @param directory
+	 *            Verzeichnisse in den Dateinen liegen.
+	 */
 	private void removeDirectory(File directory) {
 		File[] directoryContents = directory.listFiles();
 		for (File file : directoryContents) {
@@ -44,6 +73,13 @@ public class Client {
 		directory.delete();
 	}
 
+	/**
+	 * Diese Methode erzeugt einen Ausgabestrom
+	 * 
+	 * 
+	 * @param path
+	 * @return
+	 */
 	public OutputStream createOutputStream(String path) {
 		File file = repository.makeFileFromPath(path);
 		if (file.exists()) {
@@ -59,6 +95,12 @@ public class Client {
 		}
 	}
 
+	/**
+	 * Es wird wird überprüft ,ob das Elternverzeichnis der Datei des file-Parameters existiert, wenn es nicht
+	 * exisiert wird es neu angelegt.
+	 * 
+	 * @param file
+	 */
 	private void makeParentDirectory(File file) {
 		File parent = file.getParentFile();
 		if (!parent.exists()) {
@@ -66,6 +108,11 @@ public class Client {
 		}
 	}
 
+	/**
+	 * 
+	 * @param fileInfo
+	 * @return
+	 */
 	public boolean isFileUpToDate(FileInfo fileInfo) {
 		File file = repository.makeFileFromPath(fileInfo.getName());
 		if (file.exists()) {
@@ -74,10 +121,19 @@ public class Client {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param server
+	 */
 	public void synchronize(Server server) {
 		synchronizeDirectory(server, ".");
 	}
 
+	/**
+	 * 
+	 * @param server
+	 * @param directory
+	 */
 	public void synchronizeDirectory(Server server, String directory) {
 		List<FileInfo> serverFiles = server.listFiles(directory);
 		List<FileInfo> clientFiles = listFiles(directory);
@@ -94,6 +150,11 @@ public class Client {
 
 	}
 
+	/**
+	 * 
+	 * @param server
+	 * @param fileInfo
+	 */
 	private void synchronizeFile(Server server, FileInfo fileInfo) {
 		if (isFileUpToDate(fileInfo)) {
 			return;
@@ -107,6 +168,11 @@ public class Client {
 		}
 	}
 
+	/**
+	 * 
+	 * @param outputStream
+	 */
+
 	private void close(OutputStream outputStream) {
 		try {
 			outputStream.close();
@@ -116,6 +182,11 @@ public class Client {
 		}
 	}
 
+	/**
+	 * 
+	 * @param serverFiles
+	 * @param clientFiles
+	 */
 	private void removeObsoleteFiles(List<FileInfo> serverFiles,
 			List<FileInfo> clientFiles) {
 		for (FileInfo clientFile : clientFiles) {
