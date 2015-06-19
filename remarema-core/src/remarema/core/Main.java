@@ -3,7 +3,10 @@ package remarema.core;
 import java.io.File;
 
 public class Main {
-
+/**
+ * Hier werden Dateien  von server auf den CLient synchronisiert
+ * @param args
+ */
 	public static void main(String[] args) {
 
 		File fileclient=new File("D:\\ClientVerzeichnis");

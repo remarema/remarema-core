@@ -83,8 +83,8 @@ public class FileRepository {
 
 	/**
 	 * Diese Methode liefert eine Datei zurück . Die Datei befindet sich in eine
-	 * Verzeichnis von dem der Pfad mitgegeben wird . Es wird über überprüft ob
-	 * es sich bei den gefunden Objekt wirklich um eine Datei oder um ein
+	 * Verzeichnis von dem der Pfad mitgegeben wird . Es wird überprüft ob es
+	 * sich bei den gefunden Objekt wirklich um eine Datei oder um ein
 	 * Verzeichnis handelt.
 	 * 
 	 * @param path
@@ -114,11 +114,11 @@ public class FileRepository {
 
 	/**
 	 * Erzeugt aus dem relativen Pfad ein {@link File} Objekt, welches auf ein
-	 * Verzeichnis innerhalb des Repositories zeigt.
+	 * Unterverzeichnis innerhalb des Repositories zeigt.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             Wird geworfen, wenn der Pfad kein Verzeichnis innerhalb des
-	 *             Repositories ist.
+	 *             Wird geworfen, wenn der Pfad kein Unterverzeichnis innerhalb
+	 *             des Repositories ist.
 	 * @param path
 	 *            Ein relativer Pfad innerhalb des Repositories
 	 * @return Ein File Objekt, welches den absoluten Pfad des Verzeichnisses
@@ -134,8 +134,8 @@ public class FileRepository {
 	}
 
 	/**
-	 * Gibt die Liste der Vorhandenen Dateien eines reativen Verzeichnisses mit.
-	 * Dann wird überprüft,ob die Datei in der Liste vorhanden ist.
+	 * Gibt die Liste der Vorhandenen Dateien eines reativen Unterverzeichnisse
+	 * mit. Dann wird überprüft,ob die Datei in der Liste vorhanden ist.
 	 * 
 	 * @param directory
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
@@ -152,11 +152,12 @@ public class FileRepository {
 	}
 
 	/**
-	 * Es wird eine File erstellt ,das sich im gewählten Path befindet
+	 * Es wird eine File von einen Pfad erstellt.
 	 * 
 	 * @param path
 	 *            ist der Ort in den die Verzeichnisse oder Dateien liegen
-	 * @return die neue das im root Verzeichnis ist und dessen Pfad wir wissen
+	 * @return ein Neues File in diesen File befindet sich das Wurzelverzeichnis
+	 *         und der Pfad
 	 */
 
 	public File makeFileFromPath(String path) {

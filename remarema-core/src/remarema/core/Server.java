@@ -16,10 +16,10 @@ public class Server {
 	private FileRepository repository;
 
 	/**
-	 * Verzeichnis wird im Konstruktor mitgegeben
+	 * Ein Verzeichnis wird im Konstruktor mitgegeben.
 	 * 
-	 * @param directory
-	 * @throws FileNotFoundException
+	 * @param ein FileRepository
+	 * 
 	 */
 
 	public Server(FileRepository fileRepository) {
@@ -27,11 +27,11 @@ public class Server {
 	}
 
 	/**
-	 * Diese Methode schließt den Eingabestrom sie gibt eine Fehlermeldung aus,
+	 * Diese Methode schließt Inputstream sie gibt eine Fehlermeldung aus,
 	 * wenn der Strom nicht geschlossen wird.
 	 * 
-	 * @param inputStream
-	 *            der Parameter in eine Objekt von Typ InputStream
+	 * @param inputStream ist da um den Strominhalt zu lesen
+	 *            
 	 */
 
 	private void closeInputStream(InputStream inputStream) {
@@ -74,16 +74,17 @@ public class Server {
 	}
 
 	/**
-	 * Bei dieser Methode wird ein Eingabestrom erzeugt,wenn der dieser nicht
-	 * gefunden wird kann
+	 * Aus dem übergeben Parameter File wird ein Inputstream erzeugt.
 	 * 
-	 * @FileNotFoundException geworfen mit eine schriftlichen
+	 * Im Fehlerfall wird eine @IllegalArgumentException ausgelöst.
+	 * 
+	 * Wird @FileNotFoundException geworfen mit eine schriftlichen
 	 * Fehlermeldung ausgegeben
 	 * 
-	 * @throws IllegalArgumentException es wird wieder die Fehlermeldung
+	 * @throws neue Fehlermeldung
 	 * 
-	 * @param file eine Objekt des gleichnamigen Typ File
-	 * @return neuen Eingabestrom mit dem Parameter File
+	 * Als @param wird File  mitgegeben
+	 * @return  den neu erzeugten Inputstream mit dem Parameter File
 	 */
 
 	private InputStream createInputStream(File file) {
@@ -95,7 +96,7 @@ public class Server {
 		}
 	}
 	/**
-	 * Die Methode den Pfad einer Liste zurück.
+	 *!!!!!NEW KOMMENTAR!!!!!!!!
 	 * 
 	 * @param path ist ein Objekt vom Typ string ,damit der Pfad  der Datei gemeint
 	 * @return Eine Liste mit seinen Pfad die sich in der Ablage befindet
@@ -105,13 +106,11 @@ public class Server {
 		return repository.listFiles(path);
 	}
 
+
 	/**
-	 * Files werden aufgerufen und der Inhalt wird in eine andere Klasse
-	 * gespeichert
-	 * 
-	 * @param filename
-	 * @param destination
-	 * @return result
+	 * Es werden Files empfangen und an eine anderen Bestimmungort kopiert.
+	 * @param filename repräsentiert die Datei.
+	 * @param destination Bestimmungsort.
 	 */
 	public void retrieveFile(String filename, OutputStream destination) {
 		File sourceFile = repository.getFile(filename);

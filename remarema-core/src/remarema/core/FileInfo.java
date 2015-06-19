@@ -56,10 +56,10 @@ public class FileInfo {
 	}
 
 	/**
-	 * Über diese Methode kann abgefragt werden ob die Datei eine Verzeichnis
-	 * oder eine Datei ist.
+	 * Hier wird das Directory zurückgegebn,wenn es sich um ein Directory
+	 * handelt.
 	 * 
-	 * @return wenn true ist die Datei ein Verzeichnis.
+	 * @return wenn true zurückgeben wird ist es ein Verzeichnis.
 	 */
 
 	public boolean isDirectory() {
@@ -67,7 +67,7 @@ public class FileInfo {
 	}
 
 	/**
-	 * Bei dieser Methode kann festgelegt werdenob diese Datei ein Verzeichnis
+	 * Bei dieser Methode kann festgelegt werden das die Datei ein Verzeichnis
 	 * ist.
 	 *
 	 */
@@ -76,11 +76,12 @@ public class FileInfo {
 	}
 
 	/**
-	 * Hier wird überprüft ob ein Objekt von Typ  Fileinfo in einer Liste vorhanden ist.
+	 * Hier werde die Elemente der Liste durchlaufen .Bei jeden dieser Elemente
+	 * wird überprüft ob sein Name gleich den festgelegeten Namen ist.
 	 * 
 	 * @param fileinfoList
 	 * 
-	 * @return wenn true zurückgegeben wird ist die Datei in der Liste
+	 * @return wenn die Fileinnformatione übereinstimmen wird true zurückgegeben
 	 */
 
 	public boolean isInList(List<FileInfo> fileinfoList) {

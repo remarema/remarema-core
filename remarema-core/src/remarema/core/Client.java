@@ -15,26 +15,28 @@ import java.util.List;
 public class Client {
 
 	private FileRepository repository;
-	
 
 	public Client(FileRepository repository) {
 		this.repository = repository;
 	}
 
 	/**
-	 * Es wird
+	 * Es wird überprüft das Verzeichnis existiert.
+	 *
 	 * 
 	 * @param directory
-	 * @return
+	 * @return wenn das File existiert sein Verzeichnis ansonsten eine Sammlung
+	 *         einer leeren Liste.
 	 */
 	public List<FileInfo> listFiles(String directory) {
-		if(repository.makeFileFromPath(directory).exists()){
+		if (repository.makeFileFromPath(directory).exists()) {
 			return repository.listFiles(directory);
 		}
 		return Collections.emptyList();
 	}
 
 	/**
+	 * !!!new Kommentar!!!
 	 * 
 	 * @param path
 	 */
@@ -76,7 +78,7 @@ public class Client {
 	}
 
 	/**
-	 * Diese Methode erzeugt einen Ausgabestrom
+	 * !!!NEW KOMMENTAR!!! Diese Methode erzeugt einen Ausgabestrom
 	 * 
 	 * 
 	 * @param path
@@ -98,8 +100,8 @@ public class Client {
 	}
 
 	/**
-	 * Es wird wird überprüft ,ob das Elternverzeichnis der Datei des file-Parameters existiert, wenn es nicht
-	 * exisiert wird es neu angelegt.
+	 * Es wird wird überprüft ,ob das Elternverzeichnis der Datei des
+	 * file-Parameters existiert, wenn es nicht exisiert wird es neu angelegt.
 	 * 
 	 * @param file
 	 */
@@ -111,6 +113,7 @@ public class Client {
 	}
 
 	/**
+	 * !!! NEW KOMMENTAR!!!
 	 * 
 	 * @param fileInfo
 	 * @return
@@ -124,6 +127,7 @@ public class Client {
 	}
 
 	/**
+	 * !!!NEW KOMMENTAR!!!
 	 * 
 	 * @param server
 	 */
@@ -132,6 +136,7 @@ public class Client {
 	}
 
 	/**
+	 * !!!NEW KOMMENTAR!!!!
 	 * 
 	 * @param server
 	 * @param directory
@@ -153,6 +158,7 @@ public class Client {
 	}
 
 	/**
+	 * !!!!NEW KOMMENTAR!!!
 	 * 
 	 * @param server
 	 * @param fileInfo
@@ -171,8 +177,10 @@ public class Client {
 	}
 
 	/**
+	 * Hier wird der Outputstream geschlossen ,falls es nicht geschlossen werden
+	 * kann wird ein Fehlermedlung zurückgegeben
 	 * 
-	 * @param outputStream
+	 * @param outputStream sagt aus das in den Strom geschrieben werden kann.
 	 */
 
 	private void close(OutputStream outputStream) {
@@ -185,7 +193,7 @@ public class Client {
 	}
 
 	/**
-	 * 
+	 * Hier wird überprüft ob ein File veraltet ist ,wenn es veraltet ist wird es entfernt
 	 * @param serverFiles
 	 * @param clientFiles
 	 */
