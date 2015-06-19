@@ -36,7 +36,7 @@ public class Client {
 	}
 
 	/**
-	 * !!!new Kommentar!!!
+	 * !!!NEW KOMMENTAR!!!
 	 * 
 	 * @param path
 	 */
@@ -113,10 +113,10 @@ public class Client {
 	}
 
 	/**
-	 * !!! NEW KOMMENTAR!!!
+	 * Hier wird überprüft ob das File aktuell ist.
 	 * 
 	 * @param fileInfo
-	 * @return
+	 * @return true wird zurückgegen wenn das File existiert
 	 */
 	public boolean isFileUpToDate(FileInfo fileInfo) {
 		File file = repository.makeFileFromPath(fileInfo.getName());
@@ -127,7 +127,8 @@ public class Client {
 	}
 
 	/**
-	 * !!!NEW KOMMENTAR!!!
+	 * Mit "." wird im die erste Stelle des relativen Verzeichnises von Server
+	 * auf den Client syncronisiert.
 	 * 
 	 * @param server
 	 */
@@ -136,7 +137,11 @@ public class Client {
 	}
 
 	/**
-	 * !!!NEW KOMMENTAR!!!!
+	 * Hier werden alle Verzeichnisse Schritt für Schritt durchlafen. Aus dem
+	 * Unterverzeichniss da gerade an der Reihe ist werden die nicht aktuellen
+	 * Files kopiert.Ist man mit eine Verzeichnis fertig spring ma eine Stufe
+	 * höher und erledigt mit jeden weiten Verzeichniss das selbe. Zum Schluss
+	 * werden die Datein im Wurzelverzeichnis syncronisiert.
 	 * 
 	 * @param server
 	 * @param directory
@@ -158,10 +163,15 @@ public class Client {
 	}
 
 	/**
-	 * !!!!NEW KOMMENTAR!!!
+	 * Dies Methode syncronisiert Files von Server auf den CLient, Es wird
+	 * überprüft ob das File aktuell ist,wenn dies zutrifft wird nichts
+	 * syoncronisiert.Ansonsten wird der Pfad des Files vom Server in einen
+	 * Outputstream geschrieben. Stehem nicht aktuellen Files in diesen stream
+	 * wird er geschlossen.
 	 * 
 	 * @param server
 	 * @param fileInfo
+	 *            alle wichitgen Indormationen des Files
 	 */
 	private void synchronizeFile(Server server, FileInfo fileInfo) {
 		if (isFileUpToDate(fileInfo)) {
@@ -180,7 +190,8 @@ public class Client {
 	 * Hier wird der Outputstream geschlossen ,falls es nicht geschlossen werden
 	 * kann wird ein Fehlermedlung zurückgegeben
 	 * 
-	 * @param outputStream sagt aus das in den Strom geschrieben werden kann.
+	 * @param outputStream
+	 *            sagt aus das in den Strom geschrieben werden kann.
 	 */
 
 	private void close(OutputStream outputStream) {
@@ -193,7 +204,9 @@ public class Client {
 	}
 
 	/**
-	 * Hier wird überprüft ob ein File veraltet ist ,wenn es veraltet ist wird es entfernt
+	 * Hier wird überprüft ob ein File veraltet ist ,wenn es veraltet ist wird
+	 * es entfernt
+	 * 
 	 * @param serverFiles
 	 * @param clientFiles
 	 */
