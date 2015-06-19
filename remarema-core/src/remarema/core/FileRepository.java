@@ -129,7 +129,7 @@ public class FileRepository {
 		if (subdirectory.isDirectory()) {
 			return subdirectory;
 		}
-		String msg = "path not a valid directory:" + path;
+		String msg = "path not a valid directory:" + subdirectory;
 		throw new IllegalArgumentException(msg);
 	}
 

@@ -1,11 +1,17 @@
 package remarema.core;
 
+import java.io.File;
+
 public class Main {
 
 	public static void main(String[] args) {
 
-		Client client = new Client();
-		Server server = new Server();
+		File fileclient=new File("D:\\ClientVerzeichnis");
+		File fileserver =new File("D:\\ServerVerzeichnis");
+		FileRepository serverrepository= new FileRepository(fileserver);
+		FileRepository clientrepository= new FileRepository(fileclient);
+		Client client = new Client( clientrepository);
+		Server server = new Server( serverrepository);
 		client.synchronize(server);
 	}
 }

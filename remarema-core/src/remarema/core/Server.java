@@ -11,9 +11,7 @@ import java.util.List;
  */
 
 public class Server {
-	public Server(){
-		
-	}
+	
 
 	private FileRepository repository;
 

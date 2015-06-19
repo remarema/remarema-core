@@ -1,6 +1,7 @@
 package remarema.core;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,9 +15,7 @@ import java.util.List;
 public class Client {
 
 	private FileRepository repository;
-	public Client(){
-		
-	}
+	
 
 	public Client(FileRepository repository) {
 		this.repository = repository;
@@ -29,7 +28,10 @@ public class Client {
 	 * @return
 	 */
 	public List<FileInfo> listFiles(String directory) {
-		return repository.listFiles(directory);
+		if(repository.makeFileFromPath(directory).exists()){
+			return repository.listFiles(directory);
+		}
+		return Collections.emptyList();
 	}
 
 	/**
