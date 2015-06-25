@@ -4,21 +4,22 @@ import java.io.*;
 import java.util.List;
 
 /**
- * Die Klasse repräsentiert einen Server
+ * Die Klasse repräsentiert einen Server Vom Server werden die Dateien und
+ * Verzeichnisse heruntergeladen ,die der Client noch nicht hat.
  * 
  * @author Regina
  *
  */
 
 public class Server {
-	
 
 	private FileRepository repository;
 
 	/**
 	 * Ein Verzeichnis wird im Konstruktor mitgegeben.
 	 * 
-	 * @param ein FileRepository
+	 * @param ein
+	 *            FileRepository
 	 * 
 	 */
 
@@ -27,11 +28,12 @@ public class Server {
 	}
 
 	/**
-	 * Diese Methode schließt Inputstream sie gibt eine Fehlermeldung aus,
-	 * wenn der Strom nicht geschlossen wird.
+	 * Diese Methode schließt Inputstream sie gibt eine Fehlermeldung aus, wenn
+	 * der Strom nicht geschlossen wird.
 	 * 
-	 * @param inputStream ist da um den Strominhalt zu lesen
-	 *            
+	 * @param inputStream
+	 *            ist da um den Strominhalt zu lesen
+	 * 
 	 */
 
 	private void closeInputStream(InputStream inputStream) {
@@ -44,8 +46,8 @@ public class Server {
 	}
 
 	/**
-	 * Diese Methode kopiert die Datei in einen Ouputstream. Falls bei
-	 * kopieren der Datei ein Fehler auftritt wird eine <code>RuntimeException</code>
+	 * Diese Methode kopiert die Datei in einen Ouputstream. Falls bei kopieren
+	 * der Datei ein Fehler auftritt wird eine <code>RuntimeException</code>
 	 * geworfen und ein Fehlermeldung ausgegeben
 	 * 
 	 * @param inputFile
@@ -78,13 +80,14 @@ public class Server {
 	 * 
 	 * Im Fehlerfall wird eine @IllegalArgumentException ausgelöst.
 	 * 
-	 * Wird @FileNotFoundException geworfen mit eine schriftlichen
-	 * Fehlermeldung ausgegeben
+	 * Wird @FileNotFoundException geworfen mit eine schriftlichen Fehlermeldung
+	 * ausgegeben
 	 * 
-	 * @throws neue Fehlermeldung
+	 * @throws neue
+	 *             Fehlermeldung
 	 * 
-	 * Als @param wird File  mitgegeben
-	 * @return  den neu erzeugten Inputstream mit dem Parameter File
+	 *             Als @param wird File mitgegeben
+	 * @return den neu erzeugten Inputstream mit dem Parameter File
 	 */
 
 	private InputStream createInputStream(File file) {
@@ -95,10 +98,13 @@ public class Server {
 			throw new IllegalArgumentException(msg, e);
 		}
 	}
+
 	/**
-	 *!!!!!NEW KOMMENTAR!!!!!!!!
+	 * Hier wird eine neue Liste erzeugt die dann später beim Vergleichen hilft.
 	 * 
-	 * @param path ist ein Objekt vom Typ string ,damit der Pfad  der Datei gemeint
+	 * @param path
+	 *            ist ein Objekt vom Typ string ,damit der Pfad der Datei
+	 *            gemeint
 	 * @return Eine Liste mit seinen Pfad die sich in der Ablage befindet
 	 */
 
@@ -106,11 +112,13 @@ public class Server {
 		return repository.listFiles(path);
 	}
 
-
 	/**
 	 * Es werden Files empfangen und an eine anderen Bestimmungort kopiert.
-	 * @param filename repräsentiert die Datei.
-	 * @param destination Bestimmungsort.
+	 * 
+	 * @param filename
+	 *            repräsentiert die Datei.
+	 * @param destination
+	 *            Bestimmungsort.
 	 */
 	public void retrieveFile(String filename, OutputStream destination) {
 		File sourceFile = repository.getFile(filename);

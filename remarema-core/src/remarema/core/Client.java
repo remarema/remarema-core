@@ -36,7 +36,9 @@ public class Client {
 	}
 
 	/**
-	 * !!!NEW KOMMENTAR!!!
+	 * Hier wird der Pfad eines leeren Verzeichnis entfernt. Dazu wird die
+	 * Methode RemoveFile verwendet in der alle nicht aktullen Files gelöscht
+	 * werden.
 	 * 
 	 * @param path
 	 */
@@ -78,11 +80,12 @@ public class Client {
 	}
 
 	/**
-	 * !!!NEW KOMMENTAR!!! Diese Methode erzeugt einen Ausgabestrom
+	 * Hier wird ein neues Stream erzeugt in den den Pfad aller existierten
+	 * Files geschrieben wird.
 	 * 
 	 * 
 	 * @param path
-	 * @return
+	 * @return neu Stream in den Dateien geschrieben wurden.
 	 */
 	public OutputStream createOutputStream(String path) {
 		File file = repository.makeFileFromPath(path);
