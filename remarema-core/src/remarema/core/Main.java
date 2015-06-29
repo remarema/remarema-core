@@ -4,10 +4,10 @@ import java.io.File;
 
 public class Main {
 	/**
-	 * Hier werden Dateien von server auf den CLient synchronisiert. Es wird für
+	 * Hier werden Dateien vom Server auf den Client synchronisiert. Es wird für
 	 * den Client und für den Server ein Pfad festgelegt. Alles was sich im
 	 * Server Verzeichnis befindet ist nach einen Aufruf auch im
-	 * CLientverzeichnis.
+	 * Clientverzeichnis.
 	 * 
 	 * @param args
 	 */

@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * In dieser Klasse wird im Konstruktor eine Wurzelverzeichnis mitgegeben, eine
- * weitere Methode {@link #createFileInfoFromFile(File)}erzeugt einne Datei mit
+ * weitere Methode {@link #createFileInfoFromFile(File)}erzeugt eine Datei mit
  * ihren Dateiinformationen.
  * 
  * @author Regina
@@ -18,7 +18,7 @@ public class FileRepository {
 
 	/**
 	 * Bei dieser Methode wird der Dateiablage ein Wurzelverzeichnis mitgegeben
-	 * ,wenn die Dateiablage neu aufgerufen
+	 * ,wenn die Dateiablage neu aufgerufen wird.
 	 * 
 	 * @param rootDirectory
 	 *            ist ein Verzeichnis
@@ -36,15 +36,15 @@ public class FileRepository {
 	 * befindet. {@link #createRelativeFileName(File)} bei dieser Methode wird
 	 * 
 	 * ein relativer und systemunabhängiger Pfad erzeugt. Die nächste Methode
-	 * überprüft ob es sichbei dem File um eine Datei oder um ein Verzeichnis
+	 * überprüft ob es sich bei dem File um eine Datei oder um ein Verzeichnis
 	 * 
-	 * handelt. Weiter wird ein Wurzelverzeichnis in einer Methode zurück
+	 * handelt. Weiters wird ein Wurzelverzeichnis in einer Methode zurück
 	 * geliefert. Die Methode {@link #getSubdirectory(String)} erzeugt eine
 	 * 
-	 * relativen Pfad ,der aus das Verzeichnis des Repositories zeugt. In dieser
-	 * Klasse gibt es auch einer Klasse die überprüft ob die Datei in der List
+	 * relativen Pfad ,der aus das Verzeichnis das Repositories erzeugt. In dieser
+	 * Klasse gibt es auch einer Klasse die überprüft ,ob die Datei in der Liste
 	 * 
-	 * ist. Die letzt Methode erstellt eine Datei die sich im gewälten Pfad
+	 * ist. Die letzte Methode erstellt eine Datei die sich im gewälten Pfad
 	 * befindet.
 	 * 
 	 * @param file
@@ -62,10 +62,10 @@ public class FileRepository {
 	}
 
 	/**
-	 * Diese Methode erzeugt aus dem übergebenen File relativen und
+	 * Diese Methode erzeugt aus dem übergebenen File einen relativen und
 	 * systemunabhängigen Pfad.
 	 * 
-	 * Der relative Pfad wird erzeugt, indem das Wurzelverzeichniss
+	 * Der relative Pfad wird erzeugt, indem das Wurzelverzeichnis
 	 * abgeschnitten wird. Der Pfad ist systemunabhängig, da die Pfade zuerst in
 	 * eine URI umgewandelt werden.
 	 * 
@@ -82,8 +82,8 @@ public class FileRepository {
 	}
 
 	/**
-	 * Diese Methode liefert eine Datei zurück . Die Datei befindet sich in eine
-	 * Verzeichnis von dem der Pfad mitgegeben wird . Es wird überprüft ob es
+	 * Diese Methode liefert eine Datei zurück. Die Datei befindet sich in einen
+	 * Verzeichnis von dem der Pfad mitgegeben wird. Es wird überprüft ob es
 	 * sich bei den gefunden Objekt wirklich um eine Datei oder um ein
 	 * Verzeichnis handelt.
 	 * 
@@ -113,7 +113,7 @@ public class FileRepository {
 	}
 
 	/**
-	 * Erzeugt aus dem relativen Pfad ein {@link File} Objekt, welches auf ein
+	 * Diese Methode erzeugt aus dem relativen Pfad ein {@link File} Objekt, welches auf ein
 	 * Unterverzeichnis innerhalb des Repositories zeigt.
 	 * 
 	 * @throws IllegalArgumentException
@@ -134,8 +134,8 @@ public class FileRepository {
 	}
 
 	/**
-	 * Gibt die Liste der Vorhandenen Dateien eines reativen Unterverzeichnisse
-	 * mit. Dann wird überprüft,ob die Datei in der Liste vorhanden ist.
+	 *Hier wird die Liste der Vorhandenen Dateien eines reativen Unterverzeichnisse
+	 * mitgegeben.Dann wird überprüft,ob die Datei in der Liste vorhanden ist.
 	 * 
 	 * @param directory
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
@@ -152,7 +152,7 @@ public class FileRepository {
 	}
 
 	/**
-	 * Es wird eine File von einen Pfad erstellt.
+	 * Es wird ein File von einen Pfad erstellt.
 	 * 
 	 * @param path
 	 *            ist der Ort in den die Verzeichnisse oder Dateien liegen

@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.List;
 
 /**
- * Die Klasse repräsentiert einen Server Vom Server werden die Dateien und
- * Verzeichnisse heruntergeladen ,die der Client noch nicht hat.
+ * Die Klasse repräsentiert einen Server .Von diesem Server werden ,die Dateien
+ * und Verzeichnisse heruntergeladen ,die der Client noch nicht besitzt.
  * 
  * @author Regina
  *
@@ -28,8 +28,8 @@ public class Server {
 	}
 
 	/**
-	 * Diese Methode schließt Inputstream sie gibt eine Fehlermeldung aus, wenn
-	 * der Strom nicht geschlossen wird.
+	 * Diese Methode schließt den Inputstream ,sie gibt eine Fehlermeldung aus,
+	 * wenn der Strom nicht geschlossen wird.
 	 * 
 	 * @param inputStream
 	 *            ist da um den Strominhalt zu lesen
@@ -46,14 +46,14 @@ public class Server {
 	}
 
 	/**
-	 * Diese Methode kopiert die Datei in einen Ouputstream. Falls bei kopieren
+	 * Diese Methode kopiert die Datei in einen Ouputstream. Falls beim kopieren
 	 * der Datei ein Fehler auftritt wird eine <code>RuntimeException</code>
-	 * geworfen und ein Fehlermeldung ausgegeben
+	 * geworfen und ein Fehlermeldung ausgegeben.
 	 * 
 	 * @param inputFile
 	 *            ist vom Typ File und repräsentiert die Dateieingaben
 	 * @param destination
-	 *            der Bestimmungsort ist vom Typ Ausgabestrom
+	 *            der Bestimmungsort an dem die Datei kopiert wird
 	 */
 	private void copyFileToDestination(File inputFile, OutputStream destination) {
 		InputStream inputStream = createInputStream(inputFile);
@@ -80,13 +80,12 @@ public class Server {
 	 * 
 	 * Im Fehlerfall wird eine @IllegalArgumentException ausgelöst.
 	 * 
-	 * Wird @FileNotFoundException geworfen mit eine schriftlichen Fehlermeldung
-	 * ausgegeben
+	 * Wird @FileNotFoundException geworfen wird eine schriftliche Fehlermeldung
+	 * ausgegeben.
 	 * 
-	 * @throws neue
-	 *             Fehlermeldung
+	 * @throws Fehlermeldung
 	 * 
-	 *             Als @param wird File mitgegeben
+	 *             Als @param wird File mitgegeben.
 	 * @return den neu erzeugten Inputstream mit dem Parameter File
 	 */
 
@@ -103,8 +102,8 @@ public class Server {
 	 * Hier wird eine neue Liste erzeugt die dann später beim Vergleichen hilft.
 	 * 
 	 * @param path
-	 *            ist ein Objekt vom Typ string ,damit der Pfad der Datei
-	 *            gemeint
+	 *            ist ein Objekt vom Typ string ,damit ist der Pfad der Ort am
+	 *            dem sich die Datei befindet.
 	 * @return Eine Liste mit seinen Pfad die sich in der Ablage befindet
 	 */
 

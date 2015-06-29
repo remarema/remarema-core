@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Die Klasse Client repräsentiert einen Client,der sich Dateien vom Server
- * herunterladet.Der Client soll in einem Verzeichnis denselben Inhalt haben wie
- * der Server an eine festgelegten Verzeichnis,
+ * Die Klasse repräsentiert einen Client,der sich Dateien vom Server
+ * herunterladet.Der Client soll in einem Verzeichnis demselben Inhalt haben
+ * ,wie der Server an eine festgelegten Verzeichnichnis von ihm.
  * 
  * @author Regina
  *
@@ -21,7 +21,7 @@ public class Client {
 	}
 
 	/**
-	 * Es wird überprüft das Verzeichnis existiert.
+	 * Es wird überprüft , ob das Verzeichnis existiert.
 	 *
 	 * 
 	 * @param directory
@@ -37,7 +37,7 @@ public class Client {
 
 	/**
 	 * Hier wird der Pfad eines leeren Verzeichnis entfernt. Dazu wird die
-	 * Methode RemoveFile verwendet in der alle nicht aktullen Files gelöscht
+	 * Methode RemoveFile verwendet ,in der alle nicht aktullen Files gelöscht
 	 * werden.
 	 * 
 	 * @param path
@@ -48,8 +48,8 @@ public class Client {
 	}
 
 	/**
-	 * Diese Methode entfernt Dateien Es wird überprüft ob eine Datei in diesem
-	 * Verzeichnis ist,wenn kein Datei darin ist wird das Verzeichnis entfernt
+	 * Diese Methode entfernt Dateien. Es wird überprüft ob eine Datei in diesem
+	 * Verzeichnis ist,wenn keine Datei darin ist wird das Verzeichnis entfernt.
 	 * 
 	 * @param file
 	 *            ein Ojekt von gleichnamigen Typ File
@@ -64,7 +64,7 @@ public class Client {
 	}
 
 	/**
-	 * Diese Methode entfernt Verzeichnise die leer sind. Der Unterschied zu @link
+	 * Diese Methode entfernt Verzeichnisse die leer sind. Der Unterschied zu @link
 	 * removeFile ist das hier mit einer for-each Schleife gearbeitet wird und
 	 * erst im letzten Schleifendurchlauf wird das Verzeichnis gelöscht.
 	 * 
@@ -80,12 +80,12 @@ public class Client {
 	}
 
 	/**
-	 * Hier wird ein neues Stream erzeugt in den den Pfad aller existierten
+	 * Hier wird ein neuer Stream erzeugt in den der Pfad aller existierten
 	 * Files geschrieben wird.
 	 * 
 	 * 
 	 * @param path
-	 * @return neu Stream in den Dateien geschrieben wurden.
+	 * @return neuer Stream in den Dateien geschrieben wurden.
 	 */
 	public OutputStream createOutputStream(String path) {
 		File file = repository.makeFileFromPath(path);
@@ -103,8 +103,9 @@ public class Client {
 	}
 
 	/**
-	 * Es wird wird überprüft ,ob das Elternverzeichnis der Datei des
-	 * file-Parameters existiert, wenn es nicht exisiert wird es neu angelegt.
+	 * Es wird überprüft, ob das Elternverzeichnis der Datei existiert, wenn es
+	 * nicht existiert wird es neu angelegt. Auch Verzeichnisse können
+	 * Elternverzeichnisse haben. Das Eltern Verzeichnis ist von Typ File.
 	 * 
 	 * @param file
 	 */
@@ -140,11 +141,11 @@ public class Client {
 	}
 
 	/**
-	 * Hier werden alle Verzeichnisse Schritt für Schritt durchlafen. Aus dem
-	 * Unterverzeichniss da gerade an der Reihe ist werden die nicht aktuellen
-	 * Files kopiert.Ist man mit eine Verzeichnis fertig spring ma eine Stufe
-	 * höher und erledigt mit jeden weiten Verzeichniss das selbe. Zum Schluss
-	 * werden die Datein im Wurzelverzeichnis syncronisiert.
+	 * Hier werden alle Verzeichnisse Schritt für Schritt durchlaufen. Aus dem
+	 * Unterverzeichniss das gerade an der Reihe ist, werden die nicht aktuellen
+	 * Files kopiert.Ist man mit einen Verzeichnis fertig springt man eine Stufe
+	 * höher und erledigt mit jeden weiteren Verzeichniss das selbe. Zum Schluss
+	 * werden die Dateien im Wurzelverzeichnis synchronisiert.
 	 * 
 	 * @param server
 	 * @param directory
@@ -166,15 +167,15 @@ public class Client {
 	}
 
 	/**
-	 * Dies Methode syncronisiert Files von Server auf den CLient, Es wird
-	 * überprüft ob das File aktuell ist,wenn dies zutrifft wird nichts
+	 * Diese Methode syncronisiert Files vom Server auf den CLient. Es wird
+	 * überprüft, ob das File aktuell ist,wenn dies zutrifft wird nichts
 	 * syoncronisiert.Ansonsten wird der Pfad des Files vom Server in einen
-	 * Outputstream geschrieben. Stehem nicht aktuellen Files in diesen stream
+	 * Outputstream geschrieben. Befinden sich nicht aktuellen Files in diesen stream
 	 * wird er geschlossen.
 	 * 
 	 * @param server
 	 * @param fileInfo
-	 *            alle wichitgen Indormationen des Files
+	 *            alle wichitgen Informationen des Files
 	 */
 	private void synchronizeFile(Server server, FileInfo fileInfo) {
 		if (isFileUpToDate(fileInfo)) {
@@ -190,11 +191,11 @@ public class Client {
 	}
 
 	/**
-	 * Hier wird der Outputstream geschlossen ,falls es nicht geschlossen werden
-	 * kann wird ein Fehlermedlung zurückgegeben
+	 * Hier wird der Outputstream geschlossen ,falls er nicht geschlossen werden
+	 * kann wird eine Fehlermedlung zurückgegeben.
 	 * 
 	 * @param outputStream
-	 *            sagt aus das in den Strom geschrieben werden kann.
+	 *            sagt aus das in dem Strom geschrieben werden kann.
 	 */
 
 	private void close(OutputStream outputStream) {
@@ -208,7 +209,7 @@ public class Client {
 
 	/**
 	 * Hier wird überprüft ob ein File veraltet ist ,wenn es veraltet ist wird
-	 * es entfernt
+	 * es entfernt.
 	 * 
 	 * @param serverFiles
 	 * @param clientFiles
