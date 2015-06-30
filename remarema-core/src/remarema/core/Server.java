@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.List;
 
 /**
- * Die Klasse repräsentiert einen Server .Von diesem Server werden ,die Dateien
- * und Verzeichnisse heruntergeladen ,die der Client noch nicht besitzt.
+ * Die Klasse repräsentiert einen Server.Von diesem Server werden,die Dateien
+ * und Verzeichnisse heruntergeladen,die der Client noch nicht besitzt.
  * 
  * @author Regina
  *
@@ -46,12 +46,14 @@ public class Server {
 	}
 
 	/**
-	 * Diese Methode kopiert die Datei in einen Ouputstream. Falls beim kopieren
-	 * der Datei ein Fehler auftritt wird eine <code>RuntimeException</code>
-	 * geworfen und ein Fehlermeldung ausgegeben.
+	 * Diese Methode kopiert die Datei in einen Ouputstream.
+	 *
+	 * Falls beim kopieren der Datei ein Fehler auftritt wird eine
+	 * <code>RuntimeException</code> geworfen und ein Fehlermeldung ausgegeben.
 	 * 
 	 * @param inputFile
 	 *            ist vom Typ File und repräsentiert die Dateieingaben
+	 *            
 	 * @param destination
 	 *            der Bestimmungsort an dem die Datei kopiert wird
 	 */
@@ -85,7 +87,8 @@ public class Server {
 	 * 
 	 * @throws Fehlermeldung
 	 * 
-	 *             Als @param wird File mitgegeben.
+	 * Als @param wird File mitgegeben.
+	 * 
 	 * @return den neu erzeugten Inputstream mit dem Parameter File
 	 */
 
@@ -102,8 +105,9 @@ public class Server {
 	 * Hier wird eine neue Liste erzeugt die dann später beim Vergleichen hilft.
 	 * 
 	 * @param path
-	 *            ist ein Objekt vom Typ string ,damit ist der Pfad der Ort am
+	 *            ist ein Objekt vom Typ string,damit ist der Pfad der Ort am
 	 *            dem sich die Datei befindet.
+	 *            
 	 * @return Eine Liste mit seinen Pfad die sich in der Ablage befindet
 	 */
 
@@ -116,6 +120,7 @@ public class Server {
 	 * 
 	 * @param filename
 	 *            repräsentiert die Datei.
+	 *            
 	 * @param destination
 	 *            Bestimmungsort.
 	 */

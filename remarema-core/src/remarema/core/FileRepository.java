@@ -41,8 +41,9 @@ public class FileRepository {
 	 * handelt. Weiters wird ein Wurzelverzeichnis in einer Methode zurück
 	 * geliefert. Die Methode {@link #getSubdirectory(String)} erzeugt eine
 	 * 
-	 * relativen Pfad ,der aus das Verzeichnis das Repositories erzeugt. In dieser
-	 * Klasse gibt es auch einer Klasse die überprüft ,ob die Datei in der Liste
+	 * relativen Pfad ,der aus das Verzeichnis das Repositories erzeugt. In
+	 * dieser Klasse gibt es auch einer Klasse die überprüft ,ob die Datei in
+	 * der Liste
 	 * 
 	 * ist. Die letzte Methode erstellt eine Datei die sich im gewälten Pfad
 	 * befindet.
@@ -65,9 +66,11 @@ public class FileRepository {
 	 * Diese Methode erzeugt aus dem übergebenen File einen relativen und
 	 * systemunabhängigen Pfad.
 	 * 
-	 * Der relative Pfad wird erzeugt, indem das Wurzelverzeichnis
-	 * abgeschnitten wird. Der Pfad ist systemunabhängig, da die Pfade zuerst in
-	 * eine URI umgewandelt werden.
+	 * Der relative Pfad wird erzeugt, indem das Wurzelverzeichnis abgeschnitten
+	 * wird.
+	 * 
+	 * Der Pfad ist systemunabhängig, da die Pfade zuerst in eine URI
+	 * umgewandelt werden.
 	 * 
 	 * @param die
 	 *            Informationen der Datei
@@ -83,12 +86,14 @@ public class FileRepository {
 
 	/**
 	 * Diese Methode liefert eine Datei zurück. Die Datei befindet sich in einen
-	 * Verzeichnis von dem der Pfad mitgegeben wird. Es wird überprüft ob es
-	 * sich bei den gefunden Objekt wirklich um eine Datei oder um ein
-	 * Verzeichnis handelt.
+	 * Verzeichnis von dem der Pfad mitgegeben wird.
+	 * 
+	 * Es wird überprüft ob es sich bei den gefunden Objekt wirklich um eine
+	 * Datei oder um ein Verzeichnis handelt.
 	 * 
 	 * @param path
 	 *            Pfad in den die Datei zu finden ist
+	 * 
 	 * @return wenn das Objekt eine Datei ist wird diese zurück geben,falls es
 	 *         keine Datei ist erscheind eine Fehlermeldung
 	 */
@@ -113,14 +118,16 @@ public class FileRepository {
 	}
 
 	/**
-	 * Diese Methode erzeugt aus dem relativen Pfad ein {@link File} Objekt, welches auf ein
-	 * Unterverzeichnis innerhalb des Repositories zeigt.
+	 * Diese Methode erzeugt aus dem relativen Pfad ein {@link File} Objekt,
+	 * welches auf ein Unterverzeichnis innerhalb des Repositories zeigt.
 	 * 
 	 * @throws IllegalArgumentException
 	 *             Wird geworfen, wenn der Pfad kein Unterverzeichnis innerhalb
 	 *             des Repositories ist.
+	 * 
 	 * @param path
 	 *            Ein relativer Pfad innerhalb des Repositories
+	 * 
 	 * @return Ein File Objekt, welches den absoluten Pfad des Verzeichnisses
 	 *         darstellt.
 	 */
@@ -134,11 +141,14 @@ public class FileRepository {
 	}
 
 	/**
-	 *Hier wird die Liste der Vorhandenen Dateien eines reativen Unterverzeichnisse
-	 * mitgegeben.Dann wird überprüft,ob die Datei in der Liste vorhanden ist.
+	 * Hier wird die Liste der Vorhandenen Dateien eines reativen
+	 * Unterverzeichnisse mitgegeben.
+	 * 
+	 * Dann wird überprüft,ob die Datei in der Liste vorhanden ist.
 	 * 
 	 * @param directory
 	 *            gibt an aus welchen Verzeichnis die Dateien sind.
+	 *            
 	 * @return es wird die Liste der Dateien zurückgegeben
 	 */
 	public List<FileInfo> listFiles(String directory) {
@@ -156,6 +166,7 @@ public class FileRepository {
 	 * 
 	 * @param path
 	 *            ist der Ort in den die Verzeichnisse oder Dateien liegen
+	 *            
 	 * @return ein Neues File in diesen File befindet sich das Wurzelverzeichnis
 	 *         und der Pfad
 	 */

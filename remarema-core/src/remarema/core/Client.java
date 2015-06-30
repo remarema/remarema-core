@@ -6,8 +6,10 @@ import java.util.List;
 
 /**
  * Die Klasse repräsentiert einen Client,der sich Dateien vom Server
- * herunterladet.Der Client soll in einem Verzeichnis demselben Inhalt haben
- * ,wie der Server an eine festgelegten Verzeichnichnis von ihm.
+ * herunterladet.
+ * 
+ * Der Client soll in einem Verzeichnis demselben Inhalt haben,wie der Server an
+ * eine festgelegten Verzeichnichnis von ihm.
  * 
  * @author Regina
  *
@@ -21,10 +23,10 @@ public class Client {
 	}
 
 	/**
-	 * Es wird überprüft , ob das Verzeichnis existiert.
+	 * Es wird überprüft, ob das Verzeichnis existiert.
 	 *
-	 * 
 	 * @param directory
+	 * 
 	 * @return wenn das File existiert sein Verzeichnis ansonsten eine Sammlung
 	 *         einer leeren Liste.
 	 */
@@ -36,9 +38,10 @@ public class Client {
 	}
 
 	/**
-	 * Hier wird der Pfad eines leeren Verzeichnis entfernt. Dazu wird die
-	 * Methode RemoveFile verwendet ,in der alle nicht aktullen Files gelöscht
-	 * werden.
+	 * Hier wird der Pfad eines leeren Verzeichnis entfernt.
+	 *
+	 * Dazu wird die Methode RemoveFile verwendet,in der alle nicht aktullen
+	 * Files gelöscht werden.
 	 * 
 	 * @param path
 	 */
@@ -48,8 +51,10 @@ public class Client {
 	}
 
 	/**
-	 * Diese Methode entfernt Dateien. Es wird überprüft ob eine Datei in diesem
-	 * Verzeichnis ist,wenn keine Datei darin ist wird das Verzeichnis entfernt.
+	 * Diese Methode entfernt Dateien.
+	 * 
+	 * Es wird überprüft ,ob eine Datei in diesem Verzeichnis ist,wenn keine
+	 * Datei darin ist wird das Verzeichnis entfernt.
 	 * 
 	 * @param file
 	 *            ein Ojekt von gleichnamigen Typ File
@@ -64,9 +69,11 @@ public class Client {
 	}
 
 	/**
-	 * Diese Methode entfernt Verzeichnisse die leer sind. Der Unterschied zu @link
-	 * removeFile ist das hier mit einer for-each Schleife gearbeitet wird und
-	 * erst im letzten Schleifendurchlauf wird das Verzeichnis gelöscht.
+	 * Diese Methode entfernt Verzeichnisse die leer sind.
+	 * 
+	 * Der Unterschied zu @link removeFile ist das hier mit einer for-each
+	 * Schleife gearbeitet wird und erst im letzten Schleifendurchlauf wird das
+	 * Verzeichnis gelöscht.
 	 * 
 	 * @param directory
 	 *            Verzeichnisse in den Dateinen liegen.
@@ -83,8 +90,9 @@ public class Client {
 	 * Hier wird ein neuer Stream erzeugt in den der Pfad aller existierten
 	 * Files geschrieben wird.
 	 * 
-	 * 
 	 * @param path
+	 *            Ort an dem die Datei liegt
+	 * 
 	 * @return neuer Stream in den Dateien geschrieben wurden.
 	 */
 	public OutputStream createOutputStream(String path) {
@@ -104,8 +112,11 @@ public class Client {
 
 	/**
 	 * Es wird überprüft, ob das Elternverzeichnis der Datei existiert, wenn es
-	 * nicht existiert wird es neu angelegt. Auch Verzeichnisse können
-	 * Elternverzeichnisse haben. Das Eltern Verzeichnis ist von Typ File.
+	 * nicht existiert wird es neu angelegt.
+	 * 
+	 * Auch Verzeichnisse können Elternverzeichnisse haben.
+	 * 
+	 * Das Eltern Verzeichnis ist von Typ File.
 	 * 
 	 * @param file
 	 */
@@ -120,6 +131,7 @@ public class Client {
 	 * Hier wird überprüft ob das File aktuell ist.
 	 * 
 	 * @param fileInfo
+	 * 
 	 * @return true wird zurückgegen wenn das File existiert
 	 */
 	public boolean isFileUpToDate(FileInfo fileInfo) {
@@ -141,13 +153,18 @@ public class Client {
 	}
 
 	/**
-	 * Hier werden alle Verzeichnisse Schritt für Schritt durchlaufen. Aus dem
-	 * Unterverzeichniss das gerade an der Reihe ist, werden die nicht aktuellen
-	 * Files kopiert.Ist man mit einen Verzeichnis fertig springt man eine Stufe
-	 * höher und erledigt mit jeden weiteren Verzeichniss das selbe. Zum Schluss
-	 * werden die Dateien im Wurzelverzeichnis synchronisiert.
+	 * Hier werden alle Verzeichnisse Schritt für Schritt durchlaufen.
+	 * 
+	 * Aus dem Unterverzeichniss das gerade an der Reihe ist, werden die nicht
+	 * aktuellen Files kopiert.
+	 * 
+	 * Ist man mit einen Verzeichnis fertig springt man eine Stufe höher und
+	 * erledigt mit jeden weiteren Verzeichniss das selbe.
+	 * 
+	 * Zum Schluss werden die Dateien im Wurzelverzeichnis synchronisiert.
 	 * 
 	 * @param server
+	 * 
 	 * @param directory
 	 */
 	public void synchronizeDirectory(Server server, String directory) {
@@ -167,13 +184,18 @@ public class Client {
 	}
 
 	/**
-	 * Diese Methode syncronisiert Files vom Server auf den CLient. Es wird
-	 * überprüft, ob das File aktuell ist,wenn dies zutrifft wird nichts
-	 * syoncronisiert.Ansonsten wird der Pfad des Files vom Server in einen
-	 * Outputstream geschrieben. Befinden sich nicht aktuellen Files in diesen stream
-	 * wird er geschlossen.
+	 * Diese Methode syncronisiert Files vom Server auf den CLient.
+	 * 
+	 * Es wird überprüft, ob das File aktuell ist,wenn dies zutrifft wird nichts
+	 * syncronisiert.
+	 * 
+	 * Ansonsten wird der Pfad des Files vom Server in einen Outputstream
+	 * geschrieben.
+	 * 
+	 * Befinden sich nicht aktuellen Files in diesen Stream wird er geschlossen.
 	 * 
 	 * @param server
+	 * 
 	 * @param fileInfo
 	 *            alle wichitgen Informationen des Files
 	 */
@@ -191,7 +213,7 @@ public class Client {
 	}
 
 	/**
-	 * Hier wird der Outputstream geschlossen ,falls er nicht geschlossen werden
+	 * Hier wird der Outputstream geschlossen,falls er nicht geschlossen werden
 	 * kann wird eine Fehlermedlung zurückgegeben.
 	 * 
 	 * @param outputStream
@@ -212,7 +234,10 @@ public class Client {
 	 * es entfernt.
 	 * 
 	 * @param serverFiles
+	 *            Liste vom Server
+	 * 
 	 * @param clientFiles
+	 *            Liste vom Client
 	 */
 	private void removeObsoleteFiles(List<FileInfo> serverFiles,
 			List<FileInfo> clientFiles) {

@@ -3,11 +3,14 @@ package remarema.core;
 import java.util.List;
 
 /**
- * Diese Klasse enthält Informationen über eine Datei. Die Datei bezitzt einen
- * Namen und einen Zeitstempel, an dem sie zuletzt verändert wurde. Weiters gibt
- * uns diese Klasse Informationen ob es sich bei der Datei um eine Datei oder
- * ein Verzeichnis handelt. Mit der Methode {@link #isInList(List)} kann geprüft
- * werden, ob ein FileInfo Objekt in einer Liste vorhanden ist.
+ * Diese Klasse enthält Informationen über eine Datei.Die Datei bezitzt einen
+ * Namen und einen Zeitstempel,an dem sie zuletzt verändert wurde.
+ * 
+ * Weiters gibt uns diese Klasse Informationen ob es sich bei der Datei um eine
+ * Datei oder ein Verzeichnis handelt.
+ * 
+ * Mit der Methode {@link #isInList(List)} kann geprüft werden, ob ein FileInfo
+ * Objekt in einer Liste vorhanden ist.
  * 
  * @author Regina
  *
@@ -45,7 +48,8 @@ public class FileInfo {
 	}
 
 	/**
-	 * Hier legen wir den Zeitstempel fest .Das ist der Zeitpunkt, an dem die Datei zuletzt Veränderung wurde .
+	 * Hier legen wir den Zeitstempel fest .Das ist der Zeitpunkt, an dem die
+	 * Datei zuletzt Veränderung wurde .
 	 * 
 	 * @param lastModified
 	 *            Datum der letzten Veränderung.
@@ -76,7 +80,7 @@ public class FileInfo {
 	}
 
 	/**
-	 * Hier werden die Elemente der Liste durchlaufen .Bei jeden dieser Elemente
+	 * Hier werden die Elemente der Liste durchlaufen.Bei jedem dieser Elemente
 	 * wird überprüft ob sein Name gleich den festgelegeten Namen ist.
 	 * 
 	 * @param fileinfoList
